@@ -20,7 +20,7 @@ The corresponding connector for you database needs to be available to be able to
 </dependency>
 ```
 
-== Configure application to use database.
+== Configure application to use database
 
 Application can be configured in src/main/resources/application.properties. You can configure the database with the following properties.
 
