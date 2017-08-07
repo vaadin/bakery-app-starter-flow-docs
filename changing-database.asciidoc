@@ -48,7 +48,7 @@ When running Bakery on a persistent database such as MySQL, it does not attempt 
 
 CAUTION: Do not commit sensitive data such as production database URL, username and password into your project. You can have these as variables and have your build tool (e.g Maven) substitute the appropriate values for them during build.
 
-For example, the configuration above could be expressed in `application.properties` as:
+For example, the `application.properties` configuration above could be expressed as:
 
 ```
 spring.jpa.hibernate.ddl-auto=create
