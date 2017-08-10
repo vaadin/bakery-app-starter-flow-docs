@@ -7,22 +7,22 @@ layout: page
 [[changing-database]]
 == Changing database
 
-Bakery comes builds on top of Spring Boot, which comes bundled with an in-memory H2 database. You can change which database is in use by adding the correct dependencies for the your database and modifying the `application.properties` file.
+Bakery is built on top of Spring Boot, which comes bundled with an in-memory H2 database. You can change which database is used by adding a dependency to your database connector into `pom.xml` and modifying the `application.properties` file.
 
-== Adding database dependency into `pom.xml`
+== Adding a database dependency into `pom.xml`
 
-The corresponding connector for you database needs to be available to be able to use your database of choice. For example if you use MySQL, you can add the approriate dependency to your pom.xml
+In order to replace the default H2 database with another database of your choice, you need to add a dependency to the corresponding database connector library into `pom.xml`. For example if you use MySQL, you can add a dependency to `mysql-connector-java`
 
-```
+```xml
 <dependency>
   <groupId>mysql</groupId>
   <artifactId>mysql-connector-java</artifactId>
 </dependency>
 ```
 
-== Configure application to use database
+== Configuring the application to use the database
 
-Application can be configured in src/main/resources/application.properties. You can configure the database with the following properties.
+The application configuration is stored in `src/main/resources/application.properties`. This is where you can provide the system properties required to establish a database connection. For example, for a MySQL connector you can set the following properties
 
 ```
 spring.jpa.hibernate.ddl-auto=create
@@ -31,22 +31,22 @@ spring.datasource.username=username
 spring.datasource.password=password
 ```
 
-Here the url to database is given with `spring.datasource.url` Spring Boot can most often deduce which database you have in use from the url and you don't have to explicitely specify it. If for some reason you need to have control of them, you can also add `spring.datasource.driver-class-name=com.mysql.jdbc.Driver` and `spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect`.
+Here the url to the database is specified with the `spring.datasource.url` property. Most often Spring Boot can automatically deduce which database is in use from the url and you do not have to explicitely specify it. If for some reason you need to have more fine-grained control over this, you can add explicit properties like `spring.datasource.driver-class-name=com.mysql.jdbc.Driver` and `spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect`.
 
-`spring.jpa.hibernate.ddl-auto` defines if the application should be set up when the application starts. The valid options are none, update, create and create-drop.
+`spring.jpa.hibernate.ddl-auto` defines how the database should be initialized when the application starts. The valid options are `none`, `update`, `create` and `create-drop`
 
-* `none` does not modify database in any way on application start-up.
-* `update` tries to modify an existing schema to match the one defined by the application without deleting old data.
-* `create` creates the database if one doesn't exist from before, but doesn't modify an existing database in any way.
-* `create-drop` always deletes any existing database and create it again from scratch.
+* `none` does not modify the database in any way on application start-up
+* `update` tries to modify the existing schema to match the schema defined by the application without deleting old data
+* `create` creates the database if it does not exist yet, but does not modify an existing database in any way
+* `create-drop` always deletes any existing database and creates it again from scratch
 
-The default option depends on the choice of the database. In-memory detabases by default does create-drop while sql databases often uses `none`.
+The default option depends on the choice of the database. For in-memory databases (like H2) Spring by default does `create-drop` while for SQL databases (like MySQL) Spring often uses `none`.
 
-When running Bakery on a persistent database such as MySQL, it does not attempt to create sample data if it detects that the data already exists.
+When Bakery runs on a persistent database such as MySQL, it does not attempt to create sample data if it detects that the data already exists.
 
 == Security
 
-CAUTION: Do not commit sensitive data such as production database URL, username and password into your project. You can have these as variables and have your build tool (e.g Maven) substitute the appropriate values for them during build.
+CAUTION: Do not commit sensitive data such as production database URL, username and password into your project repository. You can have these as variables and have your build tool (e.g Maven) substitute the appropriate values for them during build.
 
 For example, the `application.properties` configuration above could be expressed as:
 
@@ -67,4 +67,4 @@ TIP: In a CI environment, the parameters `$dbUrl`, `$dbUser` and `$dbPassword` c
 
 '''
 
-You can read more on how to configure the database in Spring's documentation https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html[Working with SQL databases]
+You can read more on how to configure the database in Spring documentation: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html[Working with SQL databases].
