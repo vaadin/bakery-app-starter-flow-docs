@@ -59,6 +59,7 @@ spring.datasource.password=@db.password@
 
 Then to run the application:
 
+
 ```
 mvn jetty:run -Ddb.url=$dbUrl -Ddb.user=$dbUser -Ddb.password=$dbPassword
 ```
