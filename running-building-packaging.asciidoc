@@ -24,8 +24,10 @@ UI tests can take a while to run, so the integration tests are in a separate `it
 By default, building and running are made in 'development' mode. This is good while working on the app as the build/start time is shorter, but the app would not work in IE11.
 In order to use production mode, you need to add `-Dvaadin.productionMode` to build/run commands:
 
-build: `mvn clean install -Dvaadin.productionMode`
+build: `mvn install -Dvaadin.productionMode`
 run: `mvn spring-boot:run -Dvaadin.productionMode`
+
+Note that when you switch from one mode to another we should run `mvn clean` before running the other mode.
 
 === Development vs production mode
 
