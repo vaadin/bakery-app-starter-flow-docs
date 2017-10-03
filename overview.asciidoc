@@ -84,7 +84,7 @@ A personalized project can be link:https://vaadin.com/start#vaadin10[downloaded 
 
 NOTE: A paid _Pro or Prime subscription is required_ for creating a new software project from a Starter template. After its creation, results can be used, developed and distributed freely, but licenses for the used commercial components are required during development. The Starter or its parts cannot be redistributed as a code example or template. For full terms, see the link:https://vaadin.com/license/cvtl-1[Commercial Vaadin Template License.]
 
-See more information on setting up your environment in include::running-building-packaging.asciidoc[Running, building and packaging].
+See more information on setting up your environment in link::running-building-packaging.asciidoc[Running, building and packaging].
 
 === Software needed
 
