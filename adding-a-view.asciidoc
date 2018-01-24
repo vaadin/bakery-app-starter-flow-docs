@@ -1,0 +1,98 @@
+---
+title: Adding a view
+order: 4
+layout: page
+---
+
+== Adding a view
+
+In the following, we're going to create a new view and add it to the navigation, step-by-step. The view we are creating here is an "About" view.
+
+=== Creating a design
+
+The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new Flow HTML template `about-view.html` in `src/main/webapp/frontend/src`. Designer will add the `.html` suffix for us.
+
+image::img/new-design.png[Adding a new design file]
+
+Open the generated template in Designer's source mode and replace the contents with this:
+
+```html
+<dom-module id="about-view">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: flex;
+        flex-direction: column;
+      }
+      div {
+        margin: auto;
+      }
+    </style>
+
+    <div>
+      This is a new web application based on the <a> href="vaadin.com/start">Vaadin Bakery App Starter.</a>
+    </div>
+  </template>
+
+  <script>
+      class AboutView extends Polymer.Element {
+          static get is() {
+              return 'about-view';
+          }
+      }
+      customElements.define(AboutView.is, AboutView);
+  </script>
+</dom-module>
+```
+
+This will defines the `about-view` web component that displays a simple text and a link. You can add new components and content to this template.
+
+
+=== Creating the View for the Design
+
+Next we create a Java class called `AboutView` in the `ui` package and extend `PolymerTemplate`. `AboutView` is the class that will be initialized when the user wants to enter the view.
+
+Paste the following as the contents of your new class:
+
+```java
+package com.vaadin.starter.bakery.ui;
+
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.templatemodel.TemplateModel;
+
+@Tag("about-view")
+@HtmlImport("src/about-view.html")
+@Route(value = "about", layout = MainView.class)
+public class AboutView extends PolymerTemplate<TemplateModel>{
+}
+```
+
+Now we have a valid view in our application, and you can access it at link:http://localhost:8080/about[http://localhost:8080/about].
+Any logic or configuration that you want to add into the view goes here.
+
+=== Including the view to the application menu
+
+The last thing for us is to add the view in our UI. This is achived by adding the following into the constructor of `MainView`:
+
+```java
+if (SecurityUtils.isAccessGranted(AboutView.class)) {
+  pages.add(new PageInfo("about", "question", "About"));
+}
+```
+
+After this change the view also appears in the application main menu.
+
+NOTE: You probably want to add the parameters as constants in `BakeryConst` instead of using strings here directly. This is left as an exercise for the reader.
+
+=== Restricting access to the view.
+
+If you want to restrict access to some views, you can require the user to have certain roles by adding an annotation. Restricting access to the about view might not make much sense usually, but we'll do it anyway by adding the following annotation to `AboutView`:
+
+```java
+@Secured(Role.ADMIN)
+```
+
+`@Secured(Role.ADMIN)` will require that the user that is logged in has the `ADMIN` role to be able to access the view. If the user does not have the role, then the view will not be in the menu and the user will get an "Access denied" message if she tries to access it with a direct URL or otherwise.
