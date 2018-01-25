@@ -29,6 +29,11 @@ run: `mvn spring-boot:run -Dvaadin.productionMode`
 
 Note that when you switch from one mode to another we should run `mvn clean` before running the other mode.
 
+=== Deploying on application server
+After production WAR file is ready it can be deployed on the web container, e.g. Apache Tomcat, WildFly, Jetty.
+
+NOTE: To run Bakery on WildFly it is needed to update hibernate-validator. Details: https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/
+
 === Development vs production mode
 
 The default mode when the application is built or started is 'development'. The 'production' mode is turned on by setting the `vaadin.productionMode` system property when building or starting the app.
