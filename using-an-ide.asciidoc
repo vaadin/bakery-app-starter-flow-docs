@@ -1,0 +1,113 @@
+---
+title: Using an IDE
+order: 150
+layout: page
+---
+
+== Import project
+
+Extract downloaded project zip file and follow
+
+=== Eclipse steps:
+
+1. `File -> Import...`
+
+2. `Maven -> Existing Maven Projects`, press Next
+
+3. Choose a path to the application folder, and click finish.
+
+=== IntelliJ IDEA steps:
+
+1. 'File -> Open...`
+
+2. Choose a path to the application folder
+
+== Build and Run Application
+
+After application is opened in IDE and all dependencies are resolved there are several ways to run it.
+
+=== Run as Java Application
+
+In Eclipse right click on application folder in Package Explorer -> Run As -> Java Application. After pick the entry point `Application.java` entry point class.
+  
+In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()'. There is a known issue with IDEA when provided dependency is not in a classpath. So if you are running the build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency.
+  
+=== Run as Maven build
+
+In Eclipse in Package Explorer right click on the application folder or `pom.xml` -> Run As -> Maven Build... -> Specify goal `spring-boot:run`.
+
+Once the Maven Run configuration is saved you can find it in `Run Configurations`
+
+image::img/eclipse-run-conf.png[Eclipse Run Configuration,align=left]
+
+In IDEA go to menu Run -> Edit configurations... -> `+` -> Maven. Specify command line with `spring-boot:run`, press Done.
+
+image::img/idea-edit-conf.png[IDEA Edit Configuration,align=left]
+
+Press green arrow to run.
+
+To make a production build the maven goal should be specified as `clean install -Dvaadin.productionMode`
+
+=== Run from Terminal
+
+Maven commands can be run both from standalone terminal and IDE built-in one.
+
+Navigate to the application directory in terminal and run `mvn spring-boot:run`
+
+To stop the execution press `Ctrl + C`
+
+== Debug Application
+
+In Eclipse same configurations can be used, but should be run from `Debug configurations`.
+
+In IDEA pick the configuration needed and click `Debug Application` button.
+
+== Automatic Restart and Live Reload
+
+To activate spring-boot-devtools is needed to:
+
+Add spring-boot-devtools dependency
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional>
+    <scope>runtime</scope>
+</dependency>
+```
+
+Fork the process used to run the application by changing spring-boot-maven-plugin configuration
+
+```
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <version>${spring-boot.version}</version>
+    <configuration>
+        <fork>true</fork>
+    </configuration>
+</plugin>
+```
+
+Create and place into the `src/main/resources/META-INF` the following spring-devtools.properties
+
+```
+restart.include.flow=/flow.*\.jar
+restart.include.vaadin=/vaadin.*\.jar
+```
+
+Optionally you might want to avoid the data generator to be run on each single reload, therefore, make H2 database store entities in file-system instead of in memory by adding the following lines to the `src/main/resources/application.properties`
+
+```
+spring.datasource.url=jdbc:h2:file:~/bakery-test-data
+spring.jpa.hibernate.ddl-auto=update
+```
+
+To trigger the restart it is needed to update classpath.
+
+In Eclipse it can be done automatically after saving modified file.
+
+In IntelliJ IDEA can be done manually `Build -> Build Project`
+
+Live reload is supported and browser extensions can be found at http://livereload.com/extensions/.
