@@ -6,9 +6,9 @@ layout: page
 
 == Import project
 
-Extract downloaded project zip file and follow
+Extract the project zip downloaded from https://vaadin.com/start#vaadin10 and import to your IDE
 
-=== Eclipse steps:
+=== Import to Eclipse:
 
 1. `File -> Import...`
 
@@ -16,7 +16,7 @@ Extract downloaded project zip file and follow
 
 3. Choose a path to the application folder, and click finish.
 
-=== IntelliJ IDEA steps:
+=== Import to IntelliJ IDEA:
 
 1. 'File -> Open...`
 
@@ -30,11 +30,11 @@ After application is opened in IDE and all dependencies are resolved there are s
 
 In Eclipse right click on application folder in Package Explorer -> Run As -> Java Application. After pick the entry point `Application.java` entry point class.
   
-In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()'. There is a known issue with IDEA when provided dependency is not in a classpath. So if you are running the build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency.
+In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()'. There is a known issue with IDEA when provided dependency is not in a classpath. So if you are running the IDEA build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency.
   
 === Run as Maven build
 
-In Eclipse in Package Explorer right click on the application folder or `pom.xml` -> Run As -> Maven Build... -> Specify goal `spring-boot:run`.
+In Eclipse in Package Explorer right click on the application root folder or `pom.xml` file -> Run As -> Maven Build... -> Specify goal `spring-boot:run` and set the configuration name, click run.
 
 Once the Maven Run configuration is saved you can find it in `Run Configurations`
 
@@ -44,9 +44,11 @@ In IDEA go to menu Run -> Edit configurations... -> `+` -> Maven. Specify comman
 
 image::img/idea-edit-conf.png[IDEA Edit Configuration,align=left]
 
+image::img/idea-run.png[IDEA Run,align=left]
+
 Press green arrow to run.
 
-To make a production build the maven goal should be specified as `clean install -Dvaadin.productionMode`
+To make a production build set the maven goal `clean install -Dvaadin.productionMode`. After production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed on application server.
 
 === Run from Terminal
 
