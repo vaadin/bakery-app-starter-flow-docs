@@ -1,12 +1,12 @@
 ---
 title: Using an IDE
-order: 150
+order: 250
 layout: page
 ---
 
-== Import project
+== Importing a project
 
-Extract the project zip downloaded from https://vaadin.com/start#vaadin10 and import to your IDE
+Extract the project zip downloaded from https://vaadin.com/start#vaadin10 and import it to your IDE
 
 === Import to Eclipse:
 
@@ -22,33 +22,42 @@ Extract the project zip downloaded from https://vaadin.com/start#vaadin10 and im
 
 2. Choose a path to the application folder
 
-== Build and Run Application
+== Building and Running Application
 
-After application is opened in IDE and all dependencies are resolved there are several ways to run it.
+After the application is opened in an IDE and all dependencies are resolved there are several ways to run it.
 
-=== Run as Java Application
+=== Run as a Java Application
 
-In Eclipse right click on application folder in Package Explorer -> Run As -> Java Application. After pick the entry point `Application.java` entry point class.
+In Eclipse right click on the application folder in Package Explorer -> Run As -> Java Application. After that pick  `Application.java` as the entry point class.
   
-In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()'. There is a known issue with IDEA when provided dependency is not in a classpath. So if you are running the IDEA build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency.
-  
-=== Run as Maven build
+In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()'. There is a known issue with IDEA when a provided dependency is not in the classpath (https://youtrack.jetbrains.com/issue/IDEA-107048). So if you are running the IDEA build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency. Since `compile` is default scope in maven, the dependency should be defined in the `pom.xml` as: 
 
-In Eclipse in Package Explorer right click on the application root folder or `pom.xml` file -> Run As -> Maven Build... -> Specify goal `spring-boot:run` and set the configuration name, click run.
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+</dependency>
+```
+  
+=== Run as a Maven build
+
+In Eclipse in Package Explorer right click on the application root folder or the `pom.xml` file. Choose Run As -> Maven Build... and specify `spring-boot:run` as the run goal. Give the configuration a name and click Run.
 
 Once the Maven Run configuration is saved you can find it in `Run Configurations`
 
 image::img/eclipse-run-conf.png[Eclipse Run Configuration,align=left]
 
-In IDEA go to menu Run -> Edit configurations... -> `+` -> Maven. Specify command line with `spring-boot:run`, press Ok.
+In IDEA, choose Run -> Edit Configurations... in the main menu. Then in the Run/Debug Configuration dialog box, click `+` on the toolbar and select `Maven` as the configuration type. Enter `spring-boot:run` as the command line, press Ok.
 
 image::img/idea-edit-conf.png[IDEA Edit Configuration,align=left]
 
 image::img/idea-run.png[IDEA Run,align=left]
 
-Press green arrow to run.
+Press the green arrow to run.
 
-To make a production build set the maven goal `clean install -Dvaadin.productionMode`. After production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed on application server.
+More about how to create and edit run/debug configuration in Intellij IDEA: https://www.jetbrains.com/help/idea/creating-and-editing-run-debug-configurations.html
+
+To make a production build use the `clean install -Dvaadin.productionMode` maven goal. After a production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed to an application server.
 
 === Run from Terminal
 
@@ -68,7 +77,7 @@ In IDEA pick the configuration needed and click `Debug Application` button.
 
 `spring-boot-devtools` can be used for fast application restarts during development.
 
-Add spring-boot-devtools dependency
+Add a `spring-boot-devtools` dependency into `pom.xml`
 
 ```
 <dependency>
@@ -92,24 +101,24 @@ Fork the process used to run the application by changing spring-boot-maven-plugi
 </plugin>
 ```
 
-Create and place into the `src/main/resources/META-INF` the following spring-devtools.properties
+Create and place into the `src/main/resources/META-INF` folder the following spring-devtools.properties
 
 ```
 restart.include.flow=/flow.*\.jar
 restart.include.vaadin=/vaadin.*\.jar
 ```
 
-Optionally you might want to avoid the data generator to be run on each single reload, therefore, make H2 database store entities in file-system instead of in memory by adding the following lines to the `src/main/resources/application.properties`
+Optionally you might want to avoid the data generator to be run on each single reload, therefore, make the H2 database store entities in the file-system instead of in memory by adding the following lines to the `src/main/resources/application.properties` file
 
 ```
 spring.datasource.url=jdbc:h2:file:~/bakery-test-data
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-To trigger the restart it is needed to update classpath.
+To trigger a restart an update to one or several files in the classpath is needed.
 
-In Eclipse it can be done automatically after saving modified file.
+In Eclipse that happens automatically after saving modified file.
 
-In IntelliJ IDEA can be done manually `Build -> Build Project`
+In IntelliJ IDEA updating classes in the classpath can be done manually `Build -> Build Project`
 
 Live reload is supported and browser extensions can be found at http://livereload.com/extensions/.
