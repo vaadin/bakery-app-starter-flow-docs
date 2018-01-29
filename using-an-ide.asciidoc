@@ -104,6 +104,8 @@ Create and place into the `src/main/resources/META-INF` folder the following spr
 restart.include.flow=/flow.*\.jar
 restart.include.vaadin=/vaadin.*\.jar
 ```
+This means we explicitly define that such jars are unmodifiable and they shouldn't be reloaded on each application restart.
+More info at https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html#using-boot-devtools-customizing-classload[Customizing the restart classloader].
 
 Optionally you might want to avoid the data generator to be run on each single reload, therefore, make the H2 database store entities in the file-system instead of in memory by adding the following lines to the `src/main/resources/application.properties` file
 
