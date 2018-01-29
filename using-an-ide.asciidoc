@@ -24,14 +24,19 @@ Extract the project zip downloaded from https://vaadin.com/start#vaadin10 and im
 
 == Building and Running Application
 
+This is the tutorial how to run the application with an IDE. More about how to build and run the application from command line at link:running-building-packaging.asciidoc[Running, building and packaging] page.
+
 After the application is opened in an IDE and all dependencies are resolved there are several ways to run it.
 
 === Run as a Java Application
 
 In Eclipse right click on the application folder in Package Explorer -> Run As -> Java Application. After that pick  `Application.java` as the entry point class.
   
-In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()'. There is a known issue with IDEA when a provided dependency is not in the classpath (https://youtrack.jetbrains.com/issue/IDEA-107048). So if you are running the IDEA build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency. Since `compile` is default scope in maven, the dependency should be defined in the `pom.xml` as: 
+In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()' or click on the green arrow at the `main` method line in the `Application.java`. 
 
+image::img/idea-run-main.png[Idea Run Main,align=left]
+
+NOTE: There is a known issue with IDEA when a provided dependency is not in the classpath (https://youtrack.jetbrains.com/issue/IDEA-107048). So if you are running the IDEA build older than 181.1818 then it is needed to set `compile` scope for a `spring-boot-starter-tomcat` dependency. Since `compile` is default scope in maven, the dependency should be defined in the `pom.xml` as: 
 ```
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -59,15 +64,7 @@ More about how to create and edit run/debug configuration in Intellij IDEA: http
 
 To make a production build use the `clean install -Dvaadin.productionMode` maven goal. After a production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed to an application server.
 
-=== Run from Terminal
-
-Maven commands can be run both from standalone terminal and IDE built-in one.
-
-Navigate to the application directory in terminal and run `mvn spring-boot:run`
-
-To stop the execution press `Ctrl + C`
-
-== Debug Application
+== Debugging the Application
 
 In Eclipse same configurations can be used, but should be run from `Debug configurations`.
 
