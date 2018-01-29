@@ -6,6 +6,9 @@ layout: page
 
 == Running, building and packaging.
 
+This page shows how to build and run the application from the command line. For documentation on how to build and run the app using an IDE see the link:using-an-ide.asciidoc[Using an IDE] page.
+
+
 === Running the app for the first time
 After downloading and extracting the zip package, it is recommended to run the software once and see that it is working.
 
