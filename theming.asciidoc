@@ -87,12 +87,12 @@ For instance, the font in the Lumo theme is defined by the `--lumo-font-family` 
   <template>
     <style>
       :host {
-        --valo-base-color: hsl(214, 35%, 21%);
-        --valo-body-text-color: hsla(214, 96%, 96%, 0.9);
-        --valo-secondary-text-color: hsla(214, 87%, 92%, 0.7);
-        --valo-shade-5pct: hsla(214, 0%, 0%, 0.07);
-        --valo-shade-20pct: hsla(214, 8%, 4%, 0.23);
-        --valo-contrast-5pct: hsla(214, 65%, 85%, 0.06);
+        --lumo-base-color: hsl(214, 35%, 21%);
+        --lumo-body-text-color: hsla(214, 96%, 96%, 0.9);
+        --lumo-secondary-text-color: hsla(214, 87%, 92%, 0.7);
+        --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
+        --lumo-shade-20pct: hsla(214, 8%, 4%, 0.23);
+        --lumo-contrast-5pct: hsla(214, 65%, 85%, 0.06);
       }
     </style>
   </template>
