@@ -114,12 +114,12 @@ The image displayed by drowsers in the tab / window header is a 'favicon'. Most 
 image::img/chrome-favicon.png[Chrome displaying a favicon]
 
 ==== Homescreen icons
-The app contains the application icons which are used as “homescreen” icons (i.e. when added to the homescreen of a device). If you need to provide icons for different targer devices, or more icon sizes, make sure you also update `app.CustomBootstrapListener` in addition to putting the new files into the `icons/` folder.
+The app contains the application icons which are used as “homescreen” icons (i.e. when added to the homescreen of a device). If you need to provide icons for different targer devices, or more icon sizes, make sure you also update `CustomBootstrapListener` in addition to putting the new files into the `icons/` folder.
 
 image::img/add-to-home-screen.png[Adding to iOS homescreen]
 
 ==== Viewport configuration
-Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by adding a `<meta name="viewport">` tag to the application bootstrap page in `app.CustomBootstrapListener`:
+Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by adding a `<meta name="viewport">` tag to the application bootstrap page in `CustomBootstrapListener`:
 
 ```java
 private void addViewportTag(Element head) {
@@ -138,7 +138,7 @@ If you want your application to run full-screen - without any browser controls, 
 <meta name="apple-mobile-web-app-capable" content="yes">
 ```
 
-The `app.CustomBootstrapListener` class would be a good place to add this code.
+The `CustomBootstrapListener` class would be a good place to add this code.
 
 ==== Don’t forget offline-page.html
 Remember that `offline-page.html` is a stand-alone page, and has all the icons/viewport tags mentioned above added separately; please remember to update it as well.
