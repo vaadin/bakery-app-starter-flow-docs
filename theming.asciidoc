@@ -8,7 +8,10 @@ layout: page
 
 This chapter covers how to adjust the visual look of your application, including styles, icons, homescreen icons, and some other customisations for mobile.
 
-It should be noted up-front that the app comes with two parts that need to be styled separately: 1). the offline page (`offline-page.html`) which is an independent HTML page with minimal CSS defining the look of the offline screen, and 2) the actual application which uses the Polymer's approach to styling (style modules, see link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom^] for more details).
+It should be noted up-front that the app comes with two parts that need to be styled separately:
+
+. the offline page (`offline-page.html`) which is an independent HTML page with minimal CSS defining the look of the offline screen
+. the actual application which uses the Polymer's approach to styling (style modules, see link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom^] for more details).
 
 
 === Styling the offline page
@@ -109,12 +112,12 @@ NOTE: Lumo has a built-in dark color palette which can be enabled by setting the
 The `icons/` folder contains the application logo image in different formats. It can be replaced with another image of your choice, but make sure to provide the image in all formats required by the set of your target browsers and devices (see link:https://css-tricks.com/favicon-quiz[this article^] for details).
 
 ==== Favicon
-The image displayed by drowsers in the tab / window header is a 'favicon'. Most modern browsers would use the image specified in `<link rel="icon" sizes="96x96" href="icons/icon-96.png" >`, but other sizes might be used as well. The `icons/favicon.ico` file is provided as a fallback options becase that format is supported by all browsers (but it is inefficient and does not support high quality images).
+The image displayed by browsers in the tab / window header is a 'favicon'. Most modern browsers would use the image specified in `<link rel="icon" sizes="96x96" href="icons/icon-96.png" >`, but other sizes might be used as well. The `icons/favicon.ico` file is provided as a fallback options because that format is supported by all browsers (but it is inefficient and does not support high quality images).
 
 image::img/chrome-favicon.png[Chrome displaying a favicon]
 
 ==== Homescreen icons
-The app contains the application icons which are used as “homescreen” icons (i.e. when added to the homescreen of a device). If you need to provide icons for different targer devices, or more icon sizes, make sure you also update `CustomBootstrapListener` in addition to putting the new files into the `icons/` folder.
+The app contains the application icons which are used as “homescreen” icons (i.e. when added to the homescreen of a device). If you need to provide icons for different target devices, or more icon sizes, make sure you also update `CustomBootstrapListener` in addition to putting the new files into the `icons/` folder.
 
 image::img/add-to-home-screen.png[Adding to iOS homescreen]
 
