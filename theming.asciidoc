@@ -31,7 +31,14 @@ You can modify the background-image, or remove it entirely:
 
 === Styling the application
 
-The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin Elements. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views.
+The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin Elements. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views. 
+
+Notice that the Lumo theme is set on all root `@RouterLayout` classes (`MainView` and `LoginView`). You can read more about the `@Theme` annotation in the link:../flow/theme/tutorial-built-in-themes.asciidoc[Component Themes] chapter of the Vaadin 10 docs.
+
+```java
+@Theme(Lumo.class)
+public class MainView extends PolymerTemplate<TemplateModel>
+```
 
 Most views and components in the Bakery app starter take advantage of the Vaadin 10 support for link:../flow/polymer-templates/tutorial-template-basic.asciidoc[Polymer-based templates]. That's why the link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[styling approach^] recommended for Polymer-based Web Components applies fully to the Bakery app starter.
 
@@ -109,7 +116,7 @@ image::img/chrome-favicon.png[Chrome displaying a favicon]
 ==== Homescreen icons
 The app contains the application icons which are used as “homescreen” icons (i.e. when added to the homescreen of a device). If you need to provide icons for different targer devices, or more icon sizes, make sure you also update `app.CustomBootstrapListener` in addition to putting the new files into the `icons/` folder.
 
-image::img/add-to-homescreen.png[Adding to iOS homescreen]
+image::img/add-to-home-screen.png[Adding to iOS homescreen]
 
 ==== Viewport configuration
 Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by adding a `<meta name="viewport">` tag to the application bootstrap page in `app.CustomBootstrapListener`:
