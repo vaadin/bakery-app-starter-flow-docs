@@ -39,11 +39,7 @@ In this page, we'll do the following steps
   6. Enabling the production database
 
 === Configuring Vaadin for Production
-When going to production, you want to make sure that your Vaadin application runs production mode by setting the following parameter in `application.properties`:
-
-`vaadin.servlet.productionMode=true`
-
-Additionally, you might want to use a real database, instead of the default in-memory provided. Thus need to add the appropriate JDBC driver as a dependency in `pom.xml`, e.g for MySQL:
+You might want to use a real database, instead of the default in-memory provided. Thus need to add the appropriate JDBC driver as a dependency in `pom.xml`, e.g for MySQL:
 
 ```
 <dependency>
@@ -62,7 +58,7 @@ spring.datasource.password=${RDS_PASSWORD}
 ```
 
 === Preparing a Production WAR
-Run `mvn clean package -Dvaadin.productionMode` to build and package your application into a `.war` file (it will be placed in the `target` folder).
+Run `mvn clean package -Dvaadin.productionMode` to build and package your application into a `.war` file ready for production (it will be placed in the `target` folder).
 
 === Creating an EB Web Application
 To create a new Elastic Beanstalk application, either click "Build a web app" in the AWS main page, know as the "console".
