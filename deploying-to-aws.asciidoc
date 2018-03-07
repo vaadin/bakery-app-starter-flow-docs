@@ -97,7 +97,7 @@ image::img/aws-eb-props.png[Use production mode properties]
 When you apply the change, your environment will be restarted with the new configuration, wait for a while and you can connect to your application from browser by clicking in the URL displayed at the top of the configuration page, and verify our application is working.
 
 
-=== Post Production
+== Post Production
 Once you have your application up-and-running with a production database, you might wonder how you can see the contents of your database. You can do this with the regular tools you use to connect to MySQL, but by default access is restricted; you need to modify your security realm. AWS provides a handy "My IP" shorthand.
 
 image::img/aws-eb-remote.png[Accessing the database remotely]
@@ -112,6 +112,9 @@ mysql -u root -p -h ***.****.us-east-2.rds.amazonaws.com -D ebdb
 You may also want to review server logs, especially if you run into problems. You can request and download (view) logs easily from the console:
 
 image::img/aws-eb-logs.png[Instance logs]
+
+
+== Resources
 
 There is a lot more you can do with AWS Elastic Beanstalk and Amazon Web Services in general, and fortunately the link:http://aws.amazon.com/documentation/elasticbeanstalk[official documentation] is very good.
 
