@@ -1,6 +1,6 @@
 ---
 title: Going to production with Spring & Beanstalk
-order: 7
+order: 700
 layout: page
 ---
 
