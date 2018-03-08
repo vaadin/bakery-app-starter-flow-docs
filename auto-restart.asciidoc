@@ -1,0 +1,58 @@
+---
+title: Automatic restart
+order: 230
+layout: page
+---
+
+== Automatic restart
+
+There are several tools which can speed up the development process. 
+Using `spring-boot-devtools` or `JRebel` allows you to see changes without application restart. 
+
+=== JRebel
+To try JRebel for free there is a 2 weeks trial. To start using it follow the instructions for your IDE:
+https://zeroturnaround.com/software/jrebel/quickstart/intellij/ or
+https://zeroturnaround.com/software/jrebel/quickstart/eclipse/
+
+JRebel has integration with a lot of frameworks, in particular with `spring-boot`. 
+It allows to substitute modified and recompiled classes into classpath without the application restart.
+
+=== Spring-boot-devtools and Live Reload
+
+To activate spring-boot-devtools is needed to:
+
+==== Add spring-boot-devtools dependency
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional>
+    <scope>runtime</scope>
+</dependency>
+```
+==== Fork the process used to run the application by changing spring-boot-maven-plugin configuration
+```
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <version>${spring-boot.version}</version>
+    <configuration>
+        <fork>true</fork>
+    </configuration>
+</plugin>
+```
+==== Create and place into the `src/main/resources/META-INF` the following spring-devtools.properties
+```
+restart.include.flow=/flow.*\.jar
+restart.include.vaadin=/vaadin.*\.jar
+```
+==== Optionally you might want to avoid the data generator to be run on each single reload, therefore, make H2 database store entities in file-system instead of in memory by adding the following lines to the `src/main/resources/application.properties`
+```
+spring.datasource.url=jdbc:h2:file:~/bakery-test-data
+spring.jpa.hibernate.ddl-auto=update
+```
+To trigger the restart it is needed to update classpath.
+In Eclipse it can be done automatically after save modified file.
+In IntelliJ IDEA can be done manually `Build -> Build Project`
+
+Live reload is supported and browser extensions can be found at http://livereload.com/extensions/.
