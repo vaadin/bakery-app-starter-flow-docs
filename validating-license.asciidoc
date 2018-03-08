@@ -43,7 +43,7 @@ If you do not complete the validation process in the browser within a few minute
 
 ```
 java.lang.RuntimeException: Unable to validate subscription. Please go to https://vaadin.com/pro/validate-license to check that your subscription is active. You can also find instructions for installing the license on a build server at https://vaadin.com/pro/validate-license
-	at com.vaadin.pro.licensechecker.ProKeyValidator.validate(ProKeyValidator.java:32)
+  at com.vaadin.pro.licensechecker.ProKeyValidator.validate(ProKeyValidator.java:32)
 ```
 
 

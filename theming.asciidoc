@@ -34,7 +34,7 @@ You can modify the background-image, or remove it entirely:
 
 === Styling the application
 
-The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin Elements. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views. 
+The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin Elements. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views.
 
 Notice that the Lumo theme is set on all root `@RouterLayout` classes (`MainView` and `LoginView`). You can read more about the `@Theme` annotation in the link:../flow/theme/tutorial-built-in-themes.asciidoc[Component Themes] chapter of the Vaadin 10 docs.
 
@@ -126,8 +126,8 @@ Making the application work well on mobile devices of various sizes requires us 
 
 ```java
 private void addViewportTag(Element head) {
-	String viewport = "width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes";
-	head.append("<meta name=\"viewport\" content=\"" + viewport + "\">");
+  String viewport = "width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes";
+  head.append("<meta name=\"viewport\" content=\"" + viewport + "\">");
 }
 ```
 

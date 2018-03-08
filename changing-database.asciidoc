@@ -11,7 +11,7 @@ Bakery is built on top of Spring Boot, which comes bundled with an in-memory H2 
 
 == Adding a database dependency into `pom.xml`
 
-In order to replace the default H2 database with another database of your choice, you need to add a dependency to the corresponding database connector library into `pom.xml`. For example if you use MySQL, you can add a dependency to `mysql-connector-java`
+In order to replace the default H2 database with another database of your choice, you need to replace the H2 dependency with a dependency to the corresponding database connector library into `pom.xml`. For example if you use MySQL, you can add a dependency to `mysql-connector-java`
 
 ```xml
 <dependency>
@@ -20,27 +20,44 @@ In order to replace the default H2 database with another database of your choice
 </dependency>
 ```
 
+For Postgres DB you need to add
+
+```xml
+<dependency>
+  <groupId>org.postgresql</groupId>
+  <artifactId>postgresql</artifactId>
+  <scope>runtime</scope>
+</dependency>
+```
+
 == Configuring the application to use the database
 
 The application configuration is stored in `src/main/resources/application.properties`. This is where you can provide the system properties required to establish a database connection. For example, for a MySQL connector you can set the following properties
 
 ```
-spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:mysql://localhost:3306/dbname
 spring.datasource.username=username
 spring.datasource.password=password
 ```
 
-Here the url to the database is specified with the `spring.datasource.url` property. Most often Spring Boot can automatically deduce which database is in use from the url and you do not have to explicitely specify it. If for some reason you need to have more fine-grained control over this, you can add explicit properties like `spring.datasource.driver-class-name=com.mysql.jdbc.Driver` and `spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect`.
+Here the url to the database is specified with the `spring.datasource.url` property. Most often Spring Boot can automatically deduce which database is in use from the url and you do not have to explicitely specify it. For specifying a PosgreSQL database, you just need to change the url to
+
+```
+spring.datasource.url= jdbc:postgresql://localhost:5432/dbname
+```
+
+If for some reason you need to have more fine-grained control over this, you can add explicit properties like `spring.datasource.driver-class-name=com.mysql.jdbc.Driver` and `spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect`.
 
 `spring.jpa.hibernate.ddl-auto` defines how the database should be initialized when the application starts. The valid options are `none`, `update`, `create` and `create-drop`
 
 * `none` does not modify the database in any way on application start-up
-* `update` tries to modify the existing schema to match the schema defined by the application without deleting old data
-* `create` creates the database if it does not exist yet, but does not modify an existing database in any way
-* `create-drop` always deletes any existing database and creates it again from scratch
+* `validate` validate the schema, makes no changes to the database.
+* `update` tries to modify the existing schema to match the schema defined by the application without deleting old data. It creates the database if it does not exist yet.
+* `create` It also creates the database if it does not exist yet, then creates the schema from scratch, destroying previous data.
+* `create-drop` always deletes any existing database and creates it and the schema from scratch. It drops the schema when the application is stopped.
 
-The default option depends on the choice of the database. For in-memory databases (like H2) Spring by default does `create-drop` while for SQL databases (like MySQL) Spring often uses `none`.
+The default option depends on the choice of the database. For in-memory databases (like H2) Spring by default does `create` or `create-drop` while for persistent databases (like MySQL) Spring often uses `none` or `update`.
 
 When Bakery runs on a persistent database such as MySQL, it does not attempt to create sample data if it detects that the data already exists.
 
@@ -51,7 +68,7 @@ CAUTION: Do not commit sensitive data such as production database URL, username 
 For example, the `application.properties` configuration above could be expressed as:
 
 ```
-spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=@db.url@
 spring.datasource.username=@db.user@
 spring.datasource.password=@db.password@
