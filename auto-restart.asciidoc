@@ -7,7 +7,7 @@ layout: page
 == Automatic restart
 
 There are several tools which can speed up the development process. 
-Using `spring-boot-devtools` or `JRebel` allows you to see changes without application restart. 
+Using `JRebel`, `spring-boot-devtools` or `Hotswap Agent` allows you to see changes without application restart. 
 
 === JRebel
 To try JRebel for free there is a 2 weeks trial. To start using it follow the instructions for your IDE:
@@ -56,3 +56,25 @@ In Eclipse it can be done automatically after save modified file.
 In IntelliJ IDEA can be done manually `Build -> Build Project`
 
 Live reload is supported and browser extensions can be found at http://livereload.com/extensions/.
+
+=== Hotswap Agent
+
+To setup Hotswap Agent follow the link:http://hotswapagent.org/mydoc_quickstart.html[tutorial].
+
+* Start with downloading and installing alternative JVM. Don't forget to run the installer with administrator priviledges.
+
+```
+sudo java -jar installer-name.jar
+```
+
+* Download manually the Hotswap Agent or install the IDE plugin (if you are using IntellijIDEA)
+
+* Create Run/Debug configuration which will run the Hotswap Agent  for link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#other-way-its-explicit-agent-configuration-without-plugin[IntellijIDEA] or link:http://hotswapagent.org/mydoc_setup_eclipse.html[Eclipse].
+
+Normally you will run configuration via debug session, but if for some reason not, it is needed to add `autoHotswap` parameter.
+
+```
+-XXaltjvm=dcevm -javaagent:PATH_TO_AGENT\hotswap-agent.jar=autoHotswap=true
+```
+
+NOTE: IntellijIDEA plugin doesn't allow to set `autoHotswap` parameter, you would need to configure the Run/Debug Configuration manually
