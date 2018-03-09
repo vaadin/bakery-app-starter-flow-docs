@@ -124,8 +124,6 @@ By using `vaadin-core-elements` it is guaranteed that screens are accessible
 
 ==== Starting the App when Offline
 
-There is no value to have an application on your home-screen, if it cannot be opened when there is no connectivity.
-
 The way to make an application available when offline, is by providing a Service Worker.
 Bakery `CustomBootstrapListener.java` class, includes the necessary javascript code to register the script `sw.js` as a Service Worker.
 
