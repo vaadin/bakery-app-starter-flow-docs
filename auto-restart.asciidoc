@@ -7,7 +7,7 @@ layout: page
 == Automatic restart
 
 There are several tools which can speed up the development process. 
-Using `spring-boot-devtools` or `JRebel` allows you to see changes without application restart. 
+Using `JRebel`, `spring-boot-devtools` or `Hotswap Agent` allows you to see changes without application restart. 
 
 === JRebel
 To try JRebel for free there is a 2 weeks trial. To start using it follow the instructions for your IDE:
@@ -56,3 +56,33 @@ In Eclipse it can be done automatically after save modified file.
 In IntelliJ IDEA can be done manually `Build -> Build Project`
 
 Live reload is supported and browser extensions can be found at http://livereload.com/extensions/.
+
+=== Hotswap Agent
+
+To setup Hotswap Agent follow the link:http://hotswapagent.org/mydoc_quickstart.html[tutorial].
+
+* Start with downloading and installing alternative JVM. Don't forget to run the installer with administrator priviledges.
+
+```
+java -jar installer-name.jar
+```
+
+* Download manually the Hotswap Agent or install the IDE plugin (if you are using IntelliJ IDEA)
+
+* Create Run/Debug configuration which will run the Hotswap Agent  for link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#other-way-its-explicit-agent-configuration-without-plugin[IntellijIDEA] or link:http://hotswapagent.org/mydoc_setup_eclipse.html[Eclipse].
+
+For running the app through the hotswap agent in a Debug session, add this line to the JVM parameters
+```
+-XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar
+```
+But if you rather a Run session, you need to set `autoHotswap` flag in the parameters
+```
+-XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar=autoHotswap=true
+```
+
+NOTE: For IntelliJ IDEA there is a link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#start-with-hotswapagent-plugin-for-intellij-idea[Hotswap Agent plugin] which works with debug session only. It doesn't support the `autoHotswap` flag. It's needed to setup Run/Debug configuration manually for running without debug session.
+
+If you prefer to run application via command line, you just need to set the JVM parameters via the MAVEN_OPTS environment variable:
+```
+MAVEN_OPTS="-XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar=autoHotswap=true" mvn spring-boot:ru
+```
