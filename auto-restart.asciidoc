@@ -64,7 +64,7 @@ To setup Hotswap Agent follow the link:http://hotswapagent.org/mydoc_quickstart.
 * Start with downloading and installing alternative JVM. Don't forget to run the installer with administrator priviledges.
 
 ```
-sudo java -jar installer-name.jar
+java -jar installer-name.jar
 ```
 
 * Download manually the Hotswap Agent or install the IDE plugin (if you are using IntellijIDEA)
