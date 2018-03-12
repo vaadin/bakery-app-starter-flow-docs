@@ -74,7 +74,7 @@ java -jar installer-name.jar
 Normally you will run configuration via debug session, but if for some reason not, it is needed to add `autoHotswap` parameter.
 
 ```
--XXaltjvm=dcevm -javaagent:PATH_TO_AGENT\hotswap-agent.jar=autoHotswap=true
+-XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar=autoHotswap=true
 ```
 
-NOTE: IntellijIDEA plugin doesn't allow to set `autoHotswap` parameter, you would need to configure the Run/Debug Configuration manually
+NOTE: For ntellijIDEA there is a Hotswap Agent plugin which works with debug session only. It doesn't support the `autoHotswap` flag. It's needed to setup Run/Debug configuration manually for running without debug session. 
