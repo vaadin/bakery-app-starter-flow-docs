@@ -71,8 +71,11 @@ java -jar installer-name.jar
 
 * Create Run/Debug configuration which will run the Hotswap Agent  for link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#other-way-its-explicit-agent-configuration-without-plugin[IntellijIDEA] or link:http://hotswapagent.org/mydoc_setup_eclipse.html[Eclipse].
 
-Normally you will run configuration via debug session, but if for some reason not, it is needed to add `autoHotswap` parameter.
-
+For running the app through the hotswap agent in a Debug session, add this line to the JVM parameters
+```
+-XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar
+```
+But if you rather a Run session, you need to set `autoHotswap` flag in the parameters
 ```
 -XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar=autoHotswap=true
 ```
