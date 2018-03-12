@@ -77,7 +77,7 @@ Normally you will run configuration via debug session, but if for some reason no
 -XXaltjvm=dcevm -javaagent:PATH_TO_AGENT/hotswap-agent.jar=autoHotswap=true
 ```
 
-NOTE: For IntelliJ IDEA there is a Hotswap Agent plugin which works with debug session only. It doesn't support the `autoHotswap` flag. It's needed to setup Run/Debug configuration manually for running without debug session.
+NOTE: For IntelliJ IDEA there is a link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#start-with-hotswapagent-plugin-for-intellij-idea[Hotswap Agent plugin] which works with debug session only. It doesn't support the `autoHotswap` flag. It's needed to setup Run/Debug configuration manually for running without debug session.
 
 If you prefer to run application via command line, you just need to set the JVM parameters via the MAVEN_OPTS environment variable:
 ```
