@@ -15,7 +15,7 @@ After downloading and extracting the zip package, it is recommended to run the s
 You can start up the project from the terminal with the Maven command `mvn spring-boot:run`. You can also use any IDE with Maven integration to run the `spring-boot:run` goal.
 
 === Building the package
-To build the project, the standard `mvn install` command can be used. This will produce a deployable, self containing `war` file in the target package
+To build the project, the standard `mvn package` command can be used. This will produce a deployable, self containing `war` file in the target package
 
 === Running the integration tests
 Integration tests are run with the `mvn verify -Pit` command.
@@ -42,7 +42,7 @@ NOTE: `-Dcom.vaadin.testbench.Parameters.runLocally` parameter should not be def
 By default, building and running are made in 'development' mode. This is good while working on the app as the build/start time is shorter, but the app would not work in IE11.
 In order to use production mode, you need to add `-Dvaadin.productionMode` to build/run commands:
 
-build: `mvn install -Dvaadin.productionMode`
+build: `mvn package -Dvaadin.productionMode`
 run: `mvn spring-boot:run -Dvaadin.productionMode`
 
 Note that when you switch from one mode to another we should run `mvn clean` before running the other mode.
