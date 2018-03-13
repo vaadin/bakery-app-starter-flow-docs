@@ -12,22 +12,37 @@ This page shows how to build and run the application from the command line. For 
 === Running the app for the first time
 After downloading and extracting the zip package, it is recommended to run the software once and see that it is working.
 
-You can start up the project, for the first time and while developing, from the terminal with the help of Maven command `mvn spring-boot:run`. You can also use any IDE with Maven integration to run the `spring-boot:run` goal.
+You can start up the project from the terminal with the Maven command `mvn spring-boot:run`. You can also use any IDE with Maven integration to run the `spring-boot:run` goal.
 
 === Building the package
-To build the project, the standard `mvn install` command can be used. This will produce a deployable, self containing jar in the target package
+To build the project, the standard `mvn package` command can be used. This will produce a deployable, self containing `war` file in the target package
 
 === Running the integration tests
 Integration tests are run with the `mvn verify -Pit` command.
 
 UI tests can take a while to run, so the integration tests are in a separate `it` profile, to provide a little bit more flexibility.
 
+Profile `it` downloads chrome driver and adds the following parameters to run integration tests:
+```
+-Dwebdriver.chrome.driver=path_to_driver
+-Dcom.vaadin.testbench.Parameters.runLocally=chrome
+```
+
+To run the tests for firefox you can download link:https://github.com/mozilla/geckodriver/releases[gecko driver] manually and run the same profile with overridden parameters:
+```
+mvn verify -Pit -Dcom.vaadin.testbench.Parameters.runLocally=firefox -Dwebdriver.gecko.driver=path_to_driver
+```
+
+To run tests on multiple browser Selenium hub follow the link:https://vaadin.com/docs/v10/testbench/testbench-running-test-on-multiple-browsers.html[Running Tests on Multiple Browsers in a Grid]. 
+
+NOTE: `-Dcom.vaadin.testbench.Parameters.runLocally` parameter should not be defined. Otherwise Testbench will run tests locally.
+
 === Building and running on production mode
 
 By default, building and running are made in 'development' mode. This is good while working on the app as the build/start time is shorter, but the app would not work in IE11.
 In order to use production mode, you need to add `-Dvaadin.productionMode` to build/run commands:
 
-build: `mvn install -Dvaadin.productionMode`
+build: `mvn package -Dvaadin.productionMode`
 run: `mvn spring-boot:run -Dvaadin.productionMode`
 
 Note that when you switch from one mode to another we should run `mvn clean` before running the other mode.
