@@ -89,3 +89,33 @@ If you want to restrict access to some views, you can require the user to have c
 ```
 
 `@Secured(Role.ADMIN)` will require that the logged in user has the `ADMIN` role to be able to access the view. If the user does not have the role, then the link to the view will not present in the menu and the user will get an "Access denied" message in case he tries to access it with a direct URL or otherwise.
+
+=== Data binding
+
+There are several ways to exchange data between server and client.
+
+==== Bind by Id
+
+Any element in template can be bound by id. For example, drag `h1` element from designer palette to the template editor (for more accurate placing you can drag the element to the `Outline` view.
+
+image::img/drag-element.png[Drag the element to the template]
+
+image::img/outline-view.png[Drag the element to the outline]
+
+TIP: Template can be edited in source code mode as well and Vaadin Designer will display the structure in `Outline` view.
+
+To bind new element to the server-side just check Java check-box at the `Outline`. Go to `AboutView.java`, Designer generated there the following code:
+```java
+@Id("h1") private H1 h1;
+```
+
+As an example add such constructor:
+```java
+public AboutView() {
+    h1.setText("About view");
+}
+```
+
+==== Bind by Polymer template property
+
+Read more about link:https://github.com/vaadin/flow-and-components-documentation/blob/master/polymer-templates/tutorial-template-bindings.asciidoc[binding Model Data in a PolymerTemplate]
