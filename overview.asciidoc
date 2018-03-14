@@ -26,7 +26,7 @@ image::img/architecture-diagram.png[Bakery Architecture diagram,align=center]
 
 === Declarative, mobile-first views
 
-Views are built with Vaadin 10. Each view is built responsively, mobile-first.
+Views are built with Vaadin 10. Each view is built responsively, mobile-first. Vaadin Designer allows to edit existing views and create new ones visually in a fast and productive way.
 
 .Bakery Mobile view
 image::img/bakery-mobile.png[Bakery Mobile view,align=center]
@@ -53,6 +53,15 @@ The application is protected with user login to keep your sensitive data safe. U
 .Bakery Login screen
 image::img/bakery-login.png[Bakery Login screen,align=center]
 
+=== Offline support
+
+Whenever client goes offline bakery shows offline screen
+
+.Bakery Offline view
+image::img/bakery-offline.png[Bakery Offline view,align=center]
+
+As soon as connection to the server is restored page is reloaded. 
+
 === Tested
 
 Integration tests are built on the application with the help of Vaadin TestBench. We content that you don't break functionality of the application why developing by maintaining and running the tests while developing. Running tests can be set up to happen on an integration server along with every commit.
@@ -77,10 +86,9 @@ The application is set up, run and packaged with the help of Spring Boot, which 
 
 Dependency management and building is handled by Maven and the standardized Maven conventions help working in the industry-proven way.
 
-
 == Getting started
 
-A personalized project can be link:https://vaadin.com/start#vaadin10[downloaded from the product page^] by giving group id, artifact id and developer name.
+A personalized project can be link:https://vaadin.com/start[downloaded from the product page^] by picking `Full Stack App with Spring` and providing Group Id and App Name, it's needed to be logged in to be able to download.
 
 NOTE: A paid _Pro or Prime subscription is required_ for creating a new software project from a Starter template. After its creation, results can be used, developed and distributed freely, but licenses for the used commercial components are required during development. The Starter or its parts cannot be redistributed as a code example or template. For full terms, see the link:https://vaadin.com/license/cvtl-1[Commercial Vaadin Template License.]
 
