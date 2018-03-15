@@ -5,64 +5,62 @@ layout: page
 ---
 
 == Architecture
-The guiding principle when create the architecture was
-"Create what is needed, do not create what you might think possibly will be needed sometimes in the future maybe".
+The Bakery App is a layered application, where the Service layer knows how to deal with persistent data, and the UI layer takes care of setting up the components hierarchy in order to display information to users, and to react to their actions in a responsive way.
 
-By focusing on the current needs you are able to ship a fully working version much faster than if you try to take all possibly future scenarios into account. When the application evolves and becomes more complex, you can add complexity in the parts that really need it and not spend effort on adding complexity where it will just be in the way. As long as you have automated tests, you can be confident in your refactoring that you are not breaking the application.
+Bakery guiding principle is "_Create what is needed, do not create what you might think possibly will be needed sometimes in the future_".
 
-The app starter is a layered application, where the service layer knows how to deal with persistent data i.e. the database, and the UI layer takes care of setting up the correct component hierarchy for the user to see and reacting to events from the user.
+=== The Service Layer
+It is responsible for providing the data displayed in the UI, and for handling updates to the data.
 
-=== Service Layer
-The service layer is separated from the UI layer for multiple reasons. The most pertinent one is to avoid creating messy UI code.
+It hides the data layer implementation details from the UI, e.g. Spring Data, so as the UI can use descriptive high level methods. In addition to making the UI code easy to read, this provides a logical place to handle transaction boundaries, like data level access control (not implemented in this app) and other database related concepts.
 
-The service layer is responsible for providing data to the UI layer for showing to the end user, and for handling updates to the data based on actions the end user performs in the application.
-It hides the data layer implementation details, e.g. Spring Data in this app starter, from the UI so the UI can use understandable and descriptive high level methods. In addition to making the UI code easy to read, this provides a logical place to handle transaction boundaries, data level access control (not implemented in this app starter) and other database related concepts.
-
-While the service layer in this app starter is separated only using a package name, it could quite easily be extracted to a separate Maven module. The advantage of this is that you can verify you are not accidentally using the UI layer from the service layer (there should be no dependency ever in this direction). The disadvantage is that you will have a more complex project as it will become a multi module Maven project.
+The service layer could quite easily be extracted to a separate Maven module, though, in Bakery it is in the same module because of simplicity.
+The advantage of a separated module, is that you can verify that you are not accidentally using the UI layer from the service layer.
 
 The service layer in this app starter is built upon Spring Data. Validation in the service layer is performed using bean validation and annotations on the entity classes.
 
-An H2 in-memory database is used by default for easy setup and getting started. This should be swapped out for a real database before going into production, see <<changing-database>>.
+An H2 in-memory database is used by default for easy setup and getting started. This should be swapped out for a real database before going into production, see link:changing-database.html[changing the database].
 
-=== UI Layer
-The UI layer is responsible for creating an interface for the user to see, reacting to events from the user, calling the service layer to fetch and update data, and to update the user interface based on changes.
+=== The UI Layer
+The UI layer is responsible for creating the visual interface, reacting to user events, calling the service layer to fetch and update data, and updating the UI based on changes.
 
 ==== Everything is a component
-As the UI layer is built using Vaadin Flow, it is component based. Everything you see on the screen is a component, possibly containing other components.
+As the UI layer is built using Vaadin 10, it is based on composition. Everything you see on the screen is a component, possibly containing other components.
 
-There are two types of components involved in creating the UI: Basic UI components and Application components.
+There are two types of blocks involved when creating the UI: Basic UI Components and Application Components (a.k.a. Templates).
 
-*Basic UI components* are the components shipped with Vaadin Flow itself or included as add-ons. This includes components such as `Button` where you mainly listen for events from the user, layout components like `Board` and user input components such as `TextField`. The basic UI components are general purpose and can be used in all applications as they are not tied in any way to the application logic.
+*Basic UI Components* are the components shipped with Vaadin 10, or included in the project as add-ons. These include components such as `Button` where you mainly listen for user events, layout components like `FormLayout`, and user input components such as `TextField`. The basic UI components are general purpose and can be used in any application or replaced by other components, as they are not tied in any way to the application logic.
 
-*Application components* are components created inside the application itself. An application component differs from a basic UI component in the way that it knows about the application and how the application should work. In many cases you do not think about that you create application components, but in practice all views in your application are components, parts of the views are typically extracted to application components and so on.
+*Application Components* are components created specifically for the application. They differs from a Basic UI Component in the way that it knows the application particularities. Although you might not be aware that you are creating components, any view in your application is a component, its parts can be extracted to smaller application components, and so on.
 
-In this app starter, there are many application components used. In addition to the main layout and all views, there are smaller components like `BakerySearch`. It is a standalone is the search bar used on the Storefront view, capable of helping the user search orders from the system. It connects to the service layer when it needs some data, and presents it to the user in a suitable way.
+In Bakery there are many application components used, and in addition, there are smaller components like `AppNavigation`. It makes possible user navigation to each view by listening on events in a `Tabs` component.
 
-==== Patterns for Building Application Components
-Some application components are very simple, like `EditForm`. They can be implemented using a small amount of HTML and of Java code, and naturally fit into one class. Trying to split a component like this into multiple parts would only include complexity and go against the guiding principles for the achitecture.
+=== Architecture Patterns
 
-Some application components on the other hand are very complex. At least views with much functionality tend to fall into this category. To be able to deal with the complexity, the implementation should be split into multiple parts, each with a clear responsibility. This can be done in different ways but in this app starter the first split is done into layout and logic using Vaadin Designer for the layouts.
+The Pattern followed for coding Bakery is the Model-View-Presenter (MVP) or a variant thereof. In this pattern, the *Model* represents the Data to be displayed or updated, the *View* represents the UI, and the *Presenter* is the glue code between both. In Bakery the *Model* is part of the _Service Layer_ described above, and the _UI Layer_ might contain *View* and *Presenter*.
 
-Vaadin Designer naturally splits out all the layout configuration into the Design HTML file and creates an auto generated companion Java file so the components used in the layout can be accessed from Java. The logic (event listeners, service layer calls etc) is then added to a separate Java file, which typically extends the generated class so it can access the components in the layout.
+When a component is simple enough, you can implement it by using a small amount of HTML disposed in a template, and a few lines of Java code that fits into one class. This is the case of `ProductForm`. It can be easily created by using Vaadin Designer, that splits out the layout configuration into the HTML template `product-form.html`, and its companion `ProductForm.java` file, making possible that components in the layout can be accessed from Java.
 
-For some application components, the split between layout and logic is not enough to deal with the complexity. There are a couple of cases in this app starter when this split just did not make the code readable and understandable. The view where you create/edit an order and the CRUD views for users and products will still be hard to read when you have split out the layout code as there is simply quite much logic code. In these cases, the MVP pattern (or a variant thereof) has been utilized so that pure business logic goes into a `presenter` class and UI related logic goes into a `view` class (there is no `model` class as the model is so simple in all the cases).
+In the other side, some application components with much funtionality can be very complex. To deal with them, the implementation should be split into multiple parts, each with a clear responsibility. In this app the first split is _Layout_ and _Logic_, using Vaadin Designer for the layouts. The logic (event listeners, service-layer calls, etc.) is then added to a separated Java file which is the _Presenter_.
 
-[NOTE]
-A `View` in Vaadin terminology does not quite match the "V" in MVP, where it's used to denote the UI part of the component. In Vaadin, a `View` is simply something that can be navigated to using a specific URL, as configured with the `Router`.
-
-In the cases the MVP pattern is utilized, the view decides which components to use and how to lay them out (the Design file is considered as part of the view). The view also wires event listeners, configures how fields are bound and what validators to use in the UI (validators are UI level helpers, the real data validation takes place in the service layer).
-
-The presenter is the one aware of the service layer (view is not), deals with what should happen on view events and also handles navigation to/from views.
+Whenever there are views with similar behavior, you might extract their common code into reusable classes, this is the case of `UsersView` and `ProductView` views. They share code in their views and presenters by extending `CrudView` and `CrudEntityPresenter` respectivelly.
 
 [NOTE]
-To follow the guiding principle, the MVP implementations do not try to accomplish goals like making the presenter not know about Vaadin Flow, making it possible to swap the View class with an implementation not based on Vaadin Flow etc. The presenter class is aware of Vaadin Flow concepts and classes but does not care about specific components used in the view.
+A _View_ in Vaadin terminology does not quite match the "V" in MVP, where it is used to denote the UI part of the component. In Vaadin, a _View_ is simply something that can be navigated to by using a specific URL, as configured with the `Router`.
 
-==== Communication between Application Components
-Application components are built to be standalone and reusable in multiple places. To avoid coupling them to other application components, they provide an API which can be used to configure them and/or they fire events to indicate that something has happened which might be of interest to other components.
+In Bakery, when MVP pattern is utilized, the view decides which components to use and how to lay them out (the template file is considered part of the view), it wires event listeners, configures how fields are bound, and what validators to use in the UI. Validators are just UI level helpers, the real data validation takes place in the service layer.
 
-References to other components are acquired by utilizing dependency injection. Many components exist only in one place in the view and can be injected into any other component in the view without accidentally creating multiple instances. After injection, the component API can be used to e.g. add an event listener.
+The `Presenter` otherwise, is the one aware of the service layer, while view is not, it deals with what should happen on view when events happen, and it also handles navigation to/from views.
 
-Some components are added dynamically to the view. For example, a number of `OrderItemEdit` instances are created and added to a `OrderItemsEdit` based on how many items are included in the order.
+[NOTE]
+To follow the guiding principle, Bakery MVP implementation does not try to accomplish goals like swaping the View class with an implementation not based on Vaadin 10 etc. The presenter class is also aware of Vaadin 10 concepts, but does not care about specific components used in the view.
+
+== Communication between Application Components
+Application components are built to be standalone and reusable in multiple places. To avoid coupling them to other application components, they provide an API which can be used to configure them and/or they fire events to indicate that something has happened, they might be of interest to other components.
+
+References to components are acquired by utilizing dependency injection, e.g. by using the `@Id` annotation. After injection, the component API can be used to e.g. add an event listener.
+
+Components can be added dynamically to the view. For example, a number of `OrderItemEditor` instances are created and added to a `OrderItemsEditor` based on the number of items in the Order.
 
 [TIP]
 Keep it simple, do what you need now and refactor when you need more.
