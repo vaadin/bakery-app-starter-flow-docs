@@ -47,7 +47,7 @@ You might want to use a real database, instead of the default in-memory provided
   <artifactId>mysql-connector-java</artifactId>
 </dependency>
 ```
-Changing the database is covered in more detail in link:changing-database.html[changing the database].
+Changing the database is covered in more detail in <<changing-database#,changing the database>>.
 
 When running in EB, in `application.properties` we can use environment variables instead of hardcoded strings to configure our database connection:
 ```

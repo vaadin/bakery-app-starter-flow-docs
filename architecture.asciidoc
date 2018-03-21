@@ -19,7 +19,7 @@ The advantage of a separated module, is that you can verify that you are not acc
 
 The service layer in this app starter is built upon Spring Data. Validation in the service layer is performed using bean validation and annotations on the entity classes.
 
-An H2 in-memory database is used by default for easy setup and getting started. This should be swapped out for a real database before going into production, see link:changing-database.html[changing the database].
+An H2 in-memory database is used by default for easy setup and getting started. This should be swapped out for a real database before going into production, see <<changing-database#,changing the database>>.
 
 === The UI Layer
 The UI layer is responsible for creating the visual interface, reacting to user events, calling the service layer to fetch and update data, and updating the UI based on changes.

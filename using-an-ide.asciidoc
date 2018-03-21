@@ -6,7 +6,7 @@ layout: page
 
 == Using an IDE
 
-This tutorial shows how to build, run and debug the application in an IDE. For a tutorial on how to build and run the application from the command line see the link:running-building-packaging.asciidoc[Running, building and packaging] page.
+This tutorial shows how to build, run and debug the application in an IDE. For a tutorial on how to build and run the application from the command line see the <<running-building-packaging#,Running, building and packaging>> page.
 
 === Importing a project
 
