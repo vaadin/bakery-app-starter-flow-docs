@@ -9,11 +9,11 @@ There are many options when looking to deploy your application for production, r
 
 In the following we'll take a look at how to deploy the Spring version to AWS Elastic Beanstalk (EB).
 
-Beanstalk is part of Amazon Web Services (AWS) and hides a lot of the complexity with provisioning, load balancing, scaling etc, since you do not have to deal with each of these individually. However, since it's part of AWS, you can still take full control of the individual services, if you have specific needs, or as your application grows.
+Beanstalk is part of Amazon Web Services (AWS) and hides a lot of the complexity with provisioning, load balancing, scaling etc., since you do not have to deal with each of these individually. However, since it's part of AWS, you can still take full control of the individual services, if you have specific needs, or as your application grows.
 
 == Getting an Amazon Elastic Beanstalk account
 
-In order to use Amazon Elastic Beanstalk, you need to have a AWS account. Head over to https://aws.amazon.com/elasticbeanstalk to read more about the service, and create an account.
+In order to use Amazon Elastic Beanstalk, you need to have an AWS account. Head over to https://aws.amazon.com/elasticbeanstalk to read more about the service and create an account.
 
 image::img/aws-create-account.png[AWS signin]
 
@@ -22,7 +22,7 @@ Although you will be asked to provide credit-card details before making use of A
 
 image::img/aws-verify-account.png[AWS signin]
 
-Finally you can push the button "Sign in to the Console" to start working with AWS.
+Finally, you can push the button "Sign in to the Console" to start working with AWS.
 
 image::img/aws-login.png[AWS login]
 
@@ -39,7 +39,7 @@ In this page, we'll do the following steps
   6. Enabling the production database
 
 == Configuring Vaadin for Production
-You might want to use a real database, instead of the default in-memory provided. Thus need to add the appropriate JDBC driver as a dependency in `pom.xml`, e.g. for MySQL:
+You might want to use a real database, instead of the default in-memory provided. Thus, need to add the appropriate JDBC driver as a dependency in `pom.xml`, e.g. for MySQL:
 
 ```
 <dependency>
@@ -61,7 +61,7 @@ spring.datasource.password=${RDS_PASSWORD}
 Run `mvn clean package -Dvaadin.productionMode` to build and package your application into a `.war` file ready for production (it will be placed in the `target` folder).
 
 == Creating an EB Web Application
-To create a new Elastic Beanstalk application, either click "Build a web app" in the AWS main page, know as the "console".
+To create a new Elastic Beanstalk application, either click "Build a web app" in the AWS main page, known as the "console".
 (You can also find Elastic Beanstalk in the menu and "Create New Application" - the steps will be similar, but not identical.)
 
 Next choose a name for your application, select "tomcat", and click on "Launch Now" and you will be brought to your instance dashboard.

@@ -11,7 +11,7 @@ Bakery is built on top of Spring Boot, which comes bundled with an in-memory H2 
 
 == Adding a database dependency into `pom.xml`
 
-In order to replace the default H2 database with another database of your choice, you need to replace the H2 dependency with a dependency to the corresponding database connector library into `pom.xml`. For example if you use MySQL, you can add a dependency to `mysql-connector-java`
+In order to replace the default H2 database with another database of your choice, you need to replace the H2 dependency with a dependency to the corresponding database connector library into `pom.xml`. For example, if you use MySQL, you can add a dependency to `mysql-connector-java`
 
 ```xml
 <dependency>

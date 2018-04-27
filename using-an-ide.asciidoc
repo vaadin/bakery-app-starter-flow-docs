@@ -18,7 +18,7 @@ Extract the project zip downloaded from https://vaadin.com/start#vaadin10 and im
 
 2. `Maven -> Existing Maven Projects`, press Next
 
-3. Select the path to the extracted archive folder, and click finish.
+3. Select the path to the extracted archive folder and click finish.
 
 === Import to IntelliJ IDEA:
 
@@ -32,13 +32,13 @@ After the application is opened in an IDE and all dependencies are resolved ther
 
 === Run as a Java Application
 
-In Eclipse right click on the application folder in Package Explorer -> Run As -> Java Application. After that pick  `Application.java` as the entry point class.
+In Eclipse right click on the application folder in Package Explorer -> Run As -> Java Application. After that pick `Application.java` as the entry point class.
 
-In IntelliJ IDEA right click on `Application.java`  -> Run 'Application.main()' or click on the green arrow at the `main` method line in the `Application.java`.
+In IntelliJ IDEA right click on `Application.java` -> Run 'Application.main()' or click on the green arrow at the `main` method line in the `Application.java`.
 
 image::img/idea-run-main.png[Idea Run Main,align=left]
 
-NOTE: There is a known issue with IntelliJ IDEA when a provided dependency is not in the classpath (https://youtrack.jetbrains.com/issue/IDEA-107048). So if you are using an IDEA build older than 181.1818 then it is necessary to set the `compile` scope for the `spring-boot-starter-tomcat` dependency. Since `compile` is the default scope in maven, the dependency should be defined in `pom.xml` as:
+NOTE: There is a known issue with IntelliJ IDEA when a provided dependency is not in the classpath (https://youtrack.jetbrains.com/issue/IDEA-107048). So, if you are using an IDEA build older than 181.1818 then it is necessary to set the `compile` scope for the `spring-boot-starter-tomcat` dependency. Since `compile` is the default scope in maven, the dependency should be defined in `pom.xml` as:
 
 ```xml
 <dependency>
@@ -63,13 +63,13 @@ image::img/idea-run.png[IDEA Run,align=left]
 
 Press the green arrow to launch the app.
 
-More about how to create and edit run/debug configuration in Intellij IDEA: https://www.jetbrains.com/help/idea/creating-and-editing-run-debug-configurations.html
+More about how to create and edit run/debug configuration in IntelliJ IDEA: https://www.jetbrains.com/help/idea/creating-and-editing-run-debug-configurations.html
 
 To make a production build use the `clean install -Dvaadin.productionMode` maven goal. After a production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed to an application server.
 
 == Debugging
 
-In Eclipse same configurations can be used, but should be run from `Debug configurations`.
+In Eclipse same configurations can be used but should be run from `Debug configurations`.
 
 In IDEA pick the configuration needed and click `Debug Application` button.
 

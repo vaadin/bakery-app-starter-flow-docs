@@ -34,7 +34,7 @@ Fork the process used to run the application by changing spring-boot-maven-plugi
 ```
 <plugin>
     <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-maven-plugin</artifactId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
     <version>${spring-boot.version}</version>
     <configuration>
         <fork>true</fork>
@@ -55,8 +55,8 @@ Optionally you might want to avoid the data generator to be run on each single r
 spring.datasource.url=jdbc:h2:file:~/bakery-test-data
 spring.jpa.hibernate.ddl-auto=update
 ```
-To trigger the restart it is needed to update classpath.
-In Eclipse it can be done automatically after save modified file.
+To trigger the restart, it is needed to update classpath.
+In Eclipse it can be done automatically after saving modified file.
 In IntelliJ IDEA can be done manually `Build -> Build Project`
 
 Live reload is supported and browser extensions can be found at http://livereload.com/extensions/.
@@ -73,7 +73,7 @@ java -jar installer-name.jar
 
 * Download manually the HotswapAgent or install the IDE plugin (if you are using IntelliJ IDEA)
 
-* Create Run/Debug configuration which will run the HotswapAgent  for link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#other-way-its-explicit-agent-configuration-without-plugin[IntellijIDEA] or link:http://hotswapagent.org/mydoc_setup_eclipse.html[Eclipse].
+* Create Run/Debug configuration which will run the HotswapAgent for link:http://hotswapagent.org/mydoc_setup_intellij_idea.html#other-way-its-explicit-agent-configuration-without-plugin[IntellijIDEA] or link:http://hotswapagent.org/mydoc_setup_eclipse.html[Eclipse].
 
 For running the app through the HotswapAgent in a Debug session, add this line to the JVM parameters
 ```
