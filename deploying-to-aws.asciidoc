@@ -4,7 +4,7 @@ order: 700
 layout: page
 ---
 
-== Going to production with Spring & Beanstalk
+= Going to production with Spring & Beanstalk
 There are many options when looking to deploy your application for production, ranging from in-house to cloud-based solutions.
 
 In the following we'll take a look at how to deploy the Spring version to AWS Elastic Beanstalk (EB).
@@ -38,8 +38,8 @@ In this page, we'll do the following steps
   5. Uploading the WAR file
   6. Enabling the production database
 
-=== Configuring Vaadin for Production
-You might want to use a real database, instead of the default in-memory provided. Thus need to add the appropriate JDBC driver as a dependency in `pom.xml`, e.g for MySQL:
+== Configuring Vaadin for Production
+You might want to use a real database, instead of the default in-memory provided. Thus need to add the appropriate JDBC driver as a dependency in `pom.xml`, e.g. for MySQL:
 
 ```
 <dependency>
@@ -57,10 +57,10 @@ spring.datasource.username=${RDS_USERNAME}
 spring.datasource.password=${RDS_PASSWORD}
 ```
 
-=== Preparing a Production WAR
+== Preparing a Production WAR
 Run `mvn clean package -Dvaadin.productionMode` to build and package your application into a `.war` file ready for production (it will be placed in the `target` folder).
 
-=== Creating an EB Web Application
+== Creating an EB Web Application
 To create a new Elastic Beanstalk application, either click "Build a web app" in the AWS main page, know as the "console".
 (You can also find Elastic Beanstalk in the menu and "Create New Application" - the steps will be similar, but not identical.)
 
@@ -69,13 +69,13 @@ Next choose a name for your application, select "tomcat", and click on "Launch N
 image::img/aws-eb-create.png[Creating a EB web application]
 
 
-=== Creating a Database for Production
+== Creating a Database for Production
 From the "Configuration" screen we can configure a database in the "Data Tier" section. We'll "create a new RDS database", choose MySQL, set a master username and password, select "delete" policy, and click on "Apply". This operation can take a while to complete.
 
 image::img/aws-eb-mysql.png[Creating a database]
 
 
-=== Uploading your .war file
+== Uploading your .war file
 When processes for creating and running instances finish, you can upload your application file by clicking on the "Upload and Deploy" button.
 Choose your .war file from the file-system, give a version to your app, and click on the "Deploy" button.
 

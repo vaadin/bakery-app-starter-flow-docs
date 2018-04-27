@@ -4,7 +4,7 @@ order: 800
 layout: page
 ---
 
-== Abstract
+= Progressive Web Application
 
 Progressive Web Apps (PWAs) are regular web pages that can look like traditional desktop applications, or like modern native mobile Apps by combining modern browsers features.
 
@@ -25,7 +25,7 @@ The main keys for a web application to be considered a PWA are:
 
 Bakery fulfills most of the requirements for a Progressive Web App:
 
-- Its UI is responsive, accessible, and looks like a native application, it gets updates from server on new versions, and all the stages of the application have a linkable url.
+- Its UI is responsive, accessible, and looks like a native application, it gets updates from server on new versions, and all the stages of the application have a linkable URL.
 - It comes with a `manifest.json` file that makes the App discoverable and installable, as well as with a service worker that facilitates certain parts of the App to be cached for offline.
 - Bakery can be started when the device is offline, noticing to the user about the issue, and loading the UI when it is online.
 - It prevents the user to interact with the UI when the network is down.
@@ -96,7 +96,7 @@ Bakery utilizes a bunch of techniques to look as a native application, and to ad
  - A responsive Web components selection:
 
    * `vaadin-grid` for displaying data without consuming so much resources.
-   * `vaadin-dialog` is used for displaying forms, this guarantees that we can control whether the form is shown as a modal layer, or in fullscreen.
+   * `vaadin-dialog` is used for displaying forms, this guarantees that we can control whether the form is shown as a modal layer, or in full screen.
    * `vaadin-form` to configure responsive steps based on the viewport.
    * `vaadin-tabs` is able to adapt to the available space an show navigation arrows in case.
    * `vaadin-board` a responsive component used in the dashboard.

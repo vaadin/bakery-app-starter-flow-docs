@@ -60,7 +60,7 @@ Whenever client goes offline bakery shows offline screen
 .Bakery Offline view
 image::img/bakery-offline.png[Bakery Offline view,align=center]
 
-As soon as connection to the server is restored page is reloaded. 
+As soon as connection to the server is restored page is reloaded.
 
 === Tested
 
