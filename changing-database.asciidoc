@@ -5,7 +5,7 @@ layout: page
 ---
 
 [[changing-database]]
-== Changing database
+= Changing database
 
 Bakery is built on top of Spring Boot, which comes bundled with an in-memory H2 database. You can change which database is used by adding a dependency to your database connector into `pom.xml` and modifying the `application.properties` file.
 
@@ -41,7 +41,7 @@ spring.datasource.username=username
 spring.datasource.password=password
 ```
 
-Here the url to the database is specified with the `spring.datasource.url` property. Most often Spring Boot can automatically deduce which database is in use from the url and you do not have to explicitely specify it. For specifying a PosgreSQL database, you just need to change the url to
+Here the URL to the database is specified with the `spring.datasource.url` property. Most often Spring Boot can automatically deduce which database is in use from the URL and you do not have to explicitly specify it. For specifying a PosgreSQL database, you just need to change the URL to
 
 ```
 spring.datasource.url= jdbc:postgresql://localhost:5432/dbname
@@ -63,7 +63,7 @@ When Bakery runs on a persistent database such as MySQL, it does not attempt to 
 
 == Security
 
-CAUTION: Do not commit sensitive data such as production database URL, username and password into your project repository. You can have these as variables and have your build tool (e.g Maven) substitute the appropriate values for them during build.
+CAUTION: Do not commit sensitive data such as production database URL, username and password into your project repository. You can have these as variables and have your build tool (e.g. Maven) substitute the appropriate values for them during build.
 
 For example, the `application.properties` configuration above could be expressed as:
 

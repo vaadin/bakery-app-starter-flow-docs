@@ -4,9 +4,9 @@ order: 500
 layout: page
 ---
 
-== Theming, styling, look and feel
+= Theming, styling, look and feel
 
-This chapter covers how to adjust the visual look of your application, including styles, icons, homescreen icons, and some other customisations for mobile.
+This chapter covers how to adjust the visual look of your application, including styles, icons, home screen icons, and some other customisations for mobile.
 
 It should be noted up-front that the app comes with two parts that need to be styled separately:
 
@@ -14,7 +14,7 @@ It should be noted up-front that the app comes with two parts that need to be st
 . the actual application which uses the Polymer's approach to styling (style modules, see link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom^] for more details).
 
 
-=== Styling the offline page
+== Styling the offline page
 
 The offline page is defined in the stand-alone `offline-page.html` file. It has a pretty simple DOM structure, which can still support multiple screen sizes and layouts. The included CSS makes the page look the same as the other (online) pages of the application, and defines some responsive behaviour.
 
@@ -32,7 +32,7 @@ You can modify the background-image, or remove it entirely:
 }
 ```
 
-=== Styling the application
+== Styling the application
 
 The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin Elements. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views.
 
@@ -64,7 +64,7 @@ This file is the “entrypoint” to the 'global' application styles. It include
 
 Any change that you want to apply to all components in the app should be either placed directly into the `shared-styles.html` file or imported into it with a `<link rel="import">`.
 
-==== bakery-charts-theme.html
+=== bakery-charts-theme.html
 This file defines a custom extension to the default theme for the `<vaadin-chart>` element. Any changes to the charts look-and-feel on the dashboard view would be defined in this file:
 
 ```html
@@ -80,7 +80,7 @@ This file defines a custom extension to the default theme for the `<vaadin-chart
 </dom-module>
 ```
 
-==== Adjusting Lumo parameters
+=== Adjusting Lumo parameters
 Various aspects of the Lumo theme (such as base fonts and colors) can be easily adjusted by changing parameters.
 
 For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom CSS property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.html` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
@@ -108,20 +108,20 @@ The full list the custom CSS properties exposed by the Lumo theme is available i
 
 NOTE: Lumo has a built-in dark color palette which can be enabled by setting the `theme="dark"` attribute on the root element of the app (or on the `<body>` of the page). More information is available in the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/colors.html#dark-palette[Lumo docs^].
 
-=== Icons, logos and viewport configuration
+== Icons, logos and viewport configuration
 The `icons/` folder contains the application logo image in different formats. It can be replaced with another image of your choice, but make sure to provide the image in all formats required by the set of your target browsers and devices (see link:https://css-tricks.com/favicon-quiz[this article^] for details).
 
-==== Favicon
+=== Favicon
 The image displayed by browsers in the tab / window header is a 'favicon'. Most modern browsers would use the image specified in `<link rel="icon" sizes="96x96" href="icons/icon-96.png" >`, but other sizes might be used as well. The `icons/favicon.ico` file is provided as a fallback options because that format is supported by all browsers (but it is inefficient and does not support high quality images).
 
 image::img/chrome-favicon.png[Chrome displaying a favicon]
 
-==== Homescreen icons
+=== Homescreen icons
 The app contains the application icons which are used as “homescreen” icons (i.e. when added to the homescreen of a device). If you need to provide icons for different target devices, or more icon sizes, make sure you also update `CustomBootstrapListener` in addition to putting the new files into the `icons/` folder.
 
 image::img/add-to-home-screen.png[Adding to iOS homescreen]
 
-==== Viewport configuration
+=== Viewport configuration
 Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by adding a `<meta name="viewport">` tag to the application bootstrap page in `CustomBootstrapListener`:
 
 ```java
@@ -133,7 +133,7 @@ private void addViewportTag(Element head) {
 
 Applications that are built for mobile tend to give a more robust feel if zooming is turned off, but you might want to turn it back on, if your application contains content that the user might want to zoom.
 
-==== Full screen app
+=== Full screen app
 If you want your application to run full-screen - without any browser controls, just like a native app - you can add the _mobile-web-app-capable_ meta-tag.
 
 ```html
@@ -143,7 +143,7 @@ If you want your application to run full-screen - without any browser controls, 
 
 The `CustomBootstrapListener` class would be a good place to add this code.
 
-==== Don’t forget offline-page.html
+=== Don’t forget offline-page.html
 Remember that `offline-page.html` is a stand-alone page, and has all the icons/viewport tags mentioned above added separately; please remember to update it as well.
 
 In fact, you might want to start customising by setting up `offline-page.html` so that it works as you wish, then modify the Java code to match.
