@@ -35,7 +35,7 @@ Jan 25, 2018 5:02:35 PM com.vaadin.pro.licensechecker.VaadinComIntegration openB
 INFO: Opening system browser to validate license. If the browser is not opened, please open https://vaadin.com/pro/validate-license?connect=423b6ec7-1976-49c2-ab59-a3293727809b manually
 ```
 
-Then the system default browser opens and the validation flow is similar to Web Components flow described above (login with your vaadin.com account):
+Then the system default browser opens, and the validation flow is similar to Web Components flow described above (login with your vaadin.com account):
 
 image::img/license-validation-tb-happy-flow.png[TechBench license validation flow,align=center]
 

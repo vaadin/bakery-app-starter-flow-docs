@@ -6,7 +6,7 @@ layout: page
 
 = Theming, styling, look and feel
 
-This chapter covers how to adjust the visual look of your application, including styles, icons, home screen icons, and some other customisations for mobile.
+This chapter covers how to adjust the visual look of your application, including styles, icons, home screen icons, and some other customizations for mobile.
 
 It should be noted up-front that the app comes with two parts that need to be styled separately:
 
@@ -16,7 +16,7 @@ It should be noted up-front that the app comes with two parts that need to be st
 
 == Styling the offline page
 
-The offline page is defined in the stand-alone `offline-page.html` file. It has a pretty simple DOM structure, which can still support multiple screen sizes and layouts. The included CSS makes the page look the same as the other (online) pages of the application, and defines some responsive behaviour.
+The offline page is defined in the stand-alone `offline-page.html` file. It has a pretty simple DOM structure, which can still support multiple screen sizes and layouts. The included CSS makes the page look the same as the other (online) pages of the application and defines some responsive behavior.
 
 image::img/bakery-offline.png[The offline page]
 
@@ -46,7 +46,7 @@ public class MainView extends PolymerTemplate<TemplateModel>
 Most views and components in the Bakery app starter take advantage of the Vaadin 10 support for <<../flow/polymer-templates/tutorial-template-basic#,Polymer-based templates>>. That's why the link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[styling approach^] recommended for Polymer-based Web Components applies fully to the Bakery app starter.
 
 ==== shared-styles.html
-This file is the “entrypoint” to the 'global' application styles. It includes the `shared-styles` Polymer style module that should be included into the local styles of every Polymer template in the app. It also contains customizations for the Lumo theme for a number of Vaadin Elements (for example, for `<vaadin-text-field>` and `<vaadin-grid>`):
+This file is the “entry point” to the 'global' application styles. It includes the `shared-styles` Polymer style module that should be included into the local styles of every Polymer template in the app. It also contains customizations for the Lumo theme for a number of Vaadin Elements (for example, for `<vaadin-text-field>` and `<vaadin-grid>`):
 
 ```html
 <dom-module id="bakery-grid-styles" theme-for="vaadin-grid">
@@ -112,7 +112,7 @@ NOTE: Lumo has a built-in dark color palette which can be enabled by setting the
 The `icons/` folder contains the application logo image in different formats. It can be replaced with another image of your choice, but make sure to provide the image in all formats required by the set of your target browsers and devices (see link:https://css-tricks.com/favicon-quiz[this article^] for details).
 
 === Favicon
-The image displayed by browsers in the tab / window header is a 'favicon'. Most modern browsers would use the image specified in `<link rel="icon" sizes="96x96" href="icons/icon-96.png" >`, but other sizes might be used as well. The `icons/favicon.ico` file is provided as a fallback options because that format is supported by all browsers (but it is inefficient and does not support high quality images).
+The image displayed by browsers in the tab / window header is a 'favicon'. Most modern browsers would use the image specified in `<link rel="icon" sizes="96x96" href="icons/icon-96.png" >`, but other sizes might be used as well. The `icons/favicon.ico` file is provided as a fallback option because that format is supported by all browsers (but it is inefficient and does not support high quality images).
 
 image::img/chrome-favicon.png[Chrome displaying a favicon]
 
@@ -144,6 +144,6 @@ If you want your application to run full-screen - without any browser controls, 
 The `CustomBootstrapListener` class would be a good place to add this code.
 
 === Don’t forget offline-page.html
-Remember that `offline-page.html` is a stand-alone page, and has all the icons/viewport tags mentioned above added separately; please remember to update it as well.
+Remember that `offline-page.html` is a stand-alone page and has all the icons/viewport tags mentioned above added separately; please remember to update it as well.
 
-In fact, you might want to start customising by setting up `offline-page.html` so that it works as you wish, then modify the Java code to match.
+In fact, you might want to start customizing by setting up `offline-page.html` so that it works as you wish, then modify the Java code to match.

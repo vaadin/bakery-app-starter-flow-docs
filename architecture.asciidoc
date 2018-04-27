@@ -12,7 +12,7 @@ Bakery guiding principle is "_Create what is needed, do not create what you migh
 == The Service Layer
 It is responsible for providing the data displayed in the UI, and for handling updates to the data.
 
-It hides the data layer implementation details from the UI, e.g. Spring Data, so as the UI can use descriptive high level methods. In addition to making the UI code easy to read, this provides a logical place to handle transaction boundaries, like data level access control (not implemented in this app) and other database related concepts.
+It hides the data layer implementation details from the UI, e.g. Spring Data, so as the UI can use descriptive high-level methods. In addition to making the UI code easy to read, this provides a logical place to handle transaction boundaries, like data level access control (not implemented in this app) and other database related concepts.
 
 The service layer could quite easily be extracted to a separate Maven module, though, in Bakery it is in the same module because of simplicity.
 The advantage of a separated module, is that you can verify that you are not accidentally using the UI layer from the service layer.
@@ -31,13 +31,13 @@ There are two types of blocks involved when creating the UI: Basic UI Components
 
 *Basic UI Components* are the components shipped with Vaadin 10, or included in the project as add-ons. These include components such as `Button` where you mainly listen for user events, layout components like `FormLayout`, and user input components such as `TextField`. The basic UI components are general purpose and can be used in any application or replaced by other components, as they are not tied in any way to the application logic.
 
-*Application Components* are components created specifically for the application. They differs from a Basic UI Component in the way that it knows the application particularities. Although you might not be aware that you are creating components, any view in your application is a component, its parts can be extracted to smaller application components, and so on.
+*Application Components* are components created specifically for the application. They differ from a Basic UI Component in the way that it knows the application particularities. Although you might not be aware that you are creating components, any view in your application is a component, its parts can be extracted to smaller application components, and so on.
 
-In Bakery there are many application components used, and in addition, there are smaller components like `AppNavigation`. It makes possible user navigation to each view by listening on events in a `Tabs` component.
+In Bakery, there are many application components used, and in addition, there are smaller components like `AppNavigation`. It makes possible user navigation to each view by listening on events in a `Tabs` component.
 
 == Architecture Patterns
 
-The Pattern followed for coding Bakery is the Model-View-Presenter (MVP) or a variant thereof. In this pattern, the *Model* represents the Data to be displayed or updated, the *View* represents the UI, and the *Presenter* is the glue code between both. In Bakery the *Model* is part of the _Service Layer_ described above, and the _UI Layer_ might contain *View* and *Presenter*.
+The Pattern followed for coding Bakery is the Model-View-Presenter (MVP) or a variant thereof. In this pattern, the *Model* represents the Data to be displayed or updated, the *View* represents the UI, and the *Presenter* is the glue code between both. In Bakery, the *Model* is part of the _Service Layer_ described above, and the _UI Layer_ might contain *View* and *Presenter*.
 
 When a component is simple enough, you can implement it by using a small amount of HTML disposed in a template, and a few lines of Java code that fits into one class. This is the case of `ProductForm`. It can be easily created by using Vaadin Designer, that splits out the layout configuration into the HTML template `product-form.html`, and its companion `ProductForm.java` file, making possible that components in the layout can be accessed from Java.
 

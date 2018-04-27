@@ -31,7 +31,7 @@ Bakery fulfills most of the requirements for a Progressive Web App:
 - It prevents the user to interact with the UI when the network is down.
 
 === Discoverable and Linkable
-We use Vaadin routing annotations so as each stage of the application has an unique URL that can be linkable.
+We use Vaadin routing annotations so as each stage of the application has a unique URL that can be linkable.
 
 In addition, Bakery provides a `manifest.json` file indicating to browsers that the page is an application, it also has the name of the application, colors and icons.
 
@@ -209,7 +209,7 @@ This is performed in the `main-view.html` template. The significant blocks here 
 
 ```
 
-In the next screenshot, you can view how the message is displayed in Bakery when you check or uncheck the offline box in browser devtools
+In the next screenshot, you can view how the message is displayed in Bakery when you check or uncheck the offline box in browser devtools.
 
 image::img/pwa-offline.gif[Offline Screen]
 

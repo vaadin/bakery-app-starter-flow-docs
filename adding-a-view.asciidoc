@@ -68,7 +68,7 @@ You can control the view navigation logic by implementing `BeforeEnterObserver` 
 
 == Including the view to the application menu
 
-The last thing for us is to add the view in our UI. This is achived by adding the following into the constructor of `MainView`:
+The last thing for us is to add the view in our UI. This is achieved by adding the following into the constructor of `MainView`:
 
 ```java
 if (SecurityUtils.isAccessGranted(AboutView.class)) {
@@ -76,7 +76,7 @@ if (SecurityUtils.isAccessGranted(AboutView.class)) {
 }
 ```
 
-After this change the view also appears in the application main menu.
+After this change, the view also appears in the application main menu.
 
 NOTE: You probably want to add the parameters as constants in `BakeryConst` instead of using strings here directly. This is left as an exercise for the reader.
 
@@ -109,7 +109,7 @@ To bind new element to the server-side just check Java check-box at the `Outline
 @Id("h1") private H1 h1;
 ```
 
-As an example add such constructor:
+As an example, add such constructor:
 ```java
 public AboutView() {
     h1.setText("About view");
