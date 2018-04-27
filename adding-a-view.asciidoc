@@ -4,11 +4,11 @@ order: 400
 layout: page
 ---
 
-== Adding a view
+= Adding a view
 
 In the following, we're going to create a new view and add it to the navigation, step-by-step. The view we are creating here is an "About" view.
 
-=== Creating a design
+== Creating a design
 
 The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new Flow HTML template `about-view.html` in `src/main/webapp/frontend/src`. Designer will add the `.html` suffix for us.
 
@@ -48,7 +48,7 @@ Open the generated template in Designer's source mode and replace the contents w
 This will defines the `about-view` web component that displays a simple text and a link. You can add new components and content to this template.
 
 
-=== Creating the View for the Design
+== Creating the View for the Design
 
 Next we create a Java class called `AboutView` in the `ui` package and extend `PolymerTemplate`. `AboutView` is the class that will be initialized when the user wants to enter the view.
 
@@ -73,7 +73,7 @@ public class AboutView extends PolymerTemplate<TemplateModel>{
 Now we have a valid view in our application, and you can access it at link:http://localhost:8080/about[http://localhost:8080/about].
 Any logic or configuration that you want to add into the view goes here.
 
-=== Including the view to the application menu
+== Including the view to the application menu
 
 The last thing for us is to add the view in our UI. This is achived by adding the following into the constructor of `MainView`:
 
@@ -87,7 +87,7 @@ After this change the view also appears in the application main menu.
 
 NOTE: You probably want to add the parameters as constants in `BakeryConst` instead of using strings here directly. This is left as an exercise for the reader.
 
-=== Restricting access to the view.
+== Restricting access to the view.
 
 If you want to restrict access to some views, you can require the user to have certain roles by adding an annotation. Restricting access to the about view might not make much sense usually, but we'll do it anyway by adding the following annotation to `AboutView`:
 
