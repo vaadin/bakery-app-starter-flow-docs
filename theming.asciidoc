@@ -80,10 +80,10 @@ This file defines a custom extension to the default theme for the `<vaadin-chart
 </dom-module>
 ```
 
-=== Adjusting Lumo parameters
-Various aspects of the Lumo theme (such as base fonts and colors) can be easily adjusted by changing parameters.
+=== Adjusting Lumo properties
+Various aspects of the Lumo theme (such as base fonts and colors) can be easily adjusted by changing the CSS custom properties.
 
-For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom CSS property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.html` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
+For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.html` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
 
 ```html
 <dom-module id="main-view">
