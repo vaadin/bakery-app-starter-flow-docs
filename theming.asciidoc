@@ -34,7 +34,7 @@ You can modify the background-image, or remove it entirely:
 
 == Styling the application
 
-The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin Elements. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views.
+The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0-alpha3/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin components. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views.
 
 Notice that the Lumo theme is set on all root `@RouterLayout` classes (`MainView` and `LoginView`). You can read more about the `@Theme` annotation in the <<../flow/theme/tutorial-built-in-themes#,Component Themes>> chapter of the Vaadin 10 docs.
 
@@ -46,7 +46,7 @@ public class MainView extends PolymerTemplate<TemplateModel>
 Most views and components in the Bakery app starter take advantage of the Vaadin 10 support for <<../flow/polymer-templates/tutorial-template-basic#,Polymer-based templates>>. That's why the link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[styling approach^] recommended for Polymer-based Web Components applies fully to the Bakery app starter.
 
 ==== shared-styles.html
-This file is the “entry point” to the 'global' application styles. It includes the `shared-styles` Polymer style module that should be included into the local styles of every Polymer template in the app. It also contains customizations for the Lumo theme for a number of Vaadin Elements (for example, for `<vaadin-text-field>` and `<vaadin-grid>`):
+This file is the “entry point” to the 'global' application styles. It includes the `shared-styles` Polymer style module that should be included into the local styles of every Polymer template in the app. It also contains customizations for the Lumo theme for a number of Vaadin components (for example, for `<vaadin-text-field>` and `<vaadin-grid>`):
 
 ```html
 <dom-module id="bakery-grid-styles" theme-for="vaadin-grid">
@@ -80,22 +80,18 @@ This file defines a custom extension to the default theme for the `<vaadin-chart
 </dom-module>
 ```
 
-=== Adjusting Lumo parameters
-Various aspects of the Lumo theme (such as base fonts and colors) can be easily adjusted by changing parameters.
+=== Adjusting Lumo properties
+Various aspects of the Lumo theme (such as base fonts and colors) can be easily adjusted by changing the CSS custom properties.
 
-For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom CSS property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.html` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
+For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.html` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
 
 ```html
 <dom-module id="main-view">
   <template>
     <style>
       :host {
-        --lumo-base-color: hsl(214, 35%, 21%);
-        --lumo-body-text-color: hsla(214, 96%, 96%, 0.9);
-        --lumo-secondary-text-color: hsla(214, 87%, 92%, 0.7);
-        --lumo-shade-5pct: hsla(214, 0%, 0%, 0.07);
-        --lumo-shade-20pct: hsla(214, 8%, 4%, 0.23);
-        --lumo-contrast-5pct: hsla(214, 65%, 85%, 0.06);
+        /* Assuming you have this font imported e.g. from Google Fonts*/
+        --lumo-font-family: 'Roboto Condensed';
       }
     </style>
   </template>
