@@ -98,11 +98,11 @@ For instance, the font in the Lumo theme is defined by the `--lumo-font-family` 
 </dom-module>
 ```
 
-image::img/bakery-dark-theme.png[Dark-gray Bakery]
-
 The full list the custom CSS properties exposed by the Lumo theme is available in the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0/demo/[Lumo documentation^].
 
 NOTE: Lumo has a built-in dark color palette which can be enabled by setting the `theme="dark"` attribute on the root element of the app (or on the `<body>` of the page). More information is available in the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.0.0/demo/colors.html#dark-palette[Lumo docs^].
+
+image::img/bakery-dark-theme.png[Dark-gray Bakery]
 
 == Icons, logos and viewport configuration
 The `icons/` folder contains the application logo image in different formats. It can be replaced with another image of your choice, but make sure to provide the image in all formats required by the set of your target browsers and devices (see link:https://css-tricks.com/favicon-quiz[this article^] for details).
