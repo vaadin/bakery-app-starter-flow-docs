@@ -1,10 +1,10 @@
 ---
-title: Validating Vaadin Subscription
+title: Validating Pro or Prime subscription
 order: 250
 layout: page
 ---
 
-= Validating Vaadin Subscription
+= Validating Pro or Prime subscription
 
 The Bakery app starter is licensed under the link:https://vaadin.com/license/cvtl-1.0[CVTLv1^] license. In addition to that, several components of this app starter have their own licenses: link:https://vaadin.com/elements/browse#charts[Vaadin Charts^], link:https://vaadin.com/elements/vaadin-board[Vaadin Board^] and link:https://vaadin.com/testbench[Vaadin TestBench^].
 
@@ -12,7 +12,7 @@ When building and running the Bakery app starter you might need to validate your
 
 == Validating Web Components licenses
 
-When running the Bakery app starter in the _development mode_, you'll get a request to validate your Vaadin Subscription (to verify that you do have the needed licenses). There is a grace period of approximately 24 hours before the validation prompt appears for the first time. The image below shows an example of how the validation prompt looks:
+When running the Bakery app starter in the _development mode_, you'll get a request to validate your Pro or Prime subscription (to verify that you do have the needed licenses). There is a grace period of approximately 24 hours before the validation prompt appears for the first time. The image below shows an example of how the validation prompt looks:
 
 image::img/license-validation-prompt.png[License validation prompt,align=center]
 
