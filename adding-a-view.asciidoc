@@ -10,7 +10,7 @@ In the following, we're going to create a new view and add it to the navigation,
 
 == Creating a design
 
-The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new Flow HTML template `about-view.html` in `src/main/webapp/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
+The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new design (Polymer template in Designer) `about-view.html` in `src/main/resources/static/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
 
 image::img/new-design.png[Adding a new design file]
 
@@ -96,13 +96,13 @@ There are several ways to exchange data between server and client.
 
 === Bind by Id
 
-Any element in template can be bound by id. For example, drag `h1` element from designer palette to the template editor (for more accurate placing you can drag the element to the `Outline` view.
+Any element in the design can be bound by id. For example, drag `h1` element from Designer `Palette` to `Outline`.
 
 image::img/drag-element.png[Drag the element to the template]
 
 image::img/outline-view.png[Drag the element to the outline]
 
-TIP: Template can be edited in source code mode as well and Vaadin Designer will display the structure in `Outline` view.
+TIP: Template can be edited in source code mode as well.
 
 To bind new element to the server-side just check Java check-box at the `Outline`. Go to `AboutView.java`, Designer generated there the following code:
 ```java
