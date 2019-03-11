@@ -33,8 +33,6 @@ There are two types of blocks involved when creating the UI: Basic UI Components
 
 *Application Components* are components created specifically for the application. They differ from a Basic UI Component in the way that it knows the application particularities. Although you might not be aware that you are creating components, any view in your application is a component, its parts can be extracted to smaller application components, and so on.
 
-In Bakery, there are many application components used, and in addition, there are smaller components like `AppNavigation`. It makes possible user navigation to each view by listening on events in a `Tabs` component.
-
 == Architecture Patterns
 
 The Pattern followed for coding Bakery is the Model-View-Presenter (MVP) or a variant thereof. In this pattern, the *Model* represents the Data to be displayed or updated, the *View* represents the UI, and the *Presenter* is the glue code between both. In Bakery, the *Model* is part of the _Service Layer_ described above, and the _UI Layer_ might contain *View* and *Presenter*.
