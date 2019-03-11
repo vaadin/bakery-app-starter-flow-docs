@@ -10,14 +10,14 @@ In the following, we're going to create a new view and add it to the navigation,
 
 == Creating a design
 
-The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new design (Polymer template in Designer) `about-view.html` in `src/main/resources/static/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
+The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new design (Vaadin Platform Design) `about-view.html` in `src/main/resources/static/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
 
 image::img/new-design.png[Adding a new design file]
 
 Open the generated `about-view.html` template in Designer's source mode and replace the contents with this:
 
 ```html
-<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 
 <dom-module id="about-view">
   <template>
@@ -32,7 +32,7 @@ Open the generated `about-view.html` template in Designer's source mode and repl
     </style>
 
     <div>
-      This is a new web application based on the <a href="vaadin.com/start">Vaadin Bakery App Starter.</a>
+      This is a new web application based on the <a href="http://vaadin.com/start">Vaadin Bakery App Starter.</a>
     </div>
   </template>
 
