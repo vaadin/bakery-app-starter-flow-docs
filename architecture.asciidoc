@@ -7,7 +7,7 @@ layout: page
 = Architecture
 The Bakery App is a layered application, where the Service layer knows how to deal with persistent data, and the UI layer takes care of setting up the components hierarchy in order to display information to users, and to react to their actions in a responsive way.
 
-Bakery guiding principle is "_Create what is needed, do not create what you might think possibly will be needed sometimes in the future_".
+Bakery's guiding principle is "_Create what is needed, do not create what you might think possibly will be needed sometime in the future_".
 
 == The Service Layer
 It is responsible for providing the data displayed in the UI, and for handling updates to the data.
@@ -32,8 +32,6 @@ There are two types of blocks involved when creating the UI: Basic UI Components
 *Basic UI Components* are the components shipped with Vaadin 10, or included in the project as add-ons. These include components such as `Button` where you mainly listen for user events, layout components like `FormLayout`, and user input components such as `TextField`. The basic UI components are general purpose and can be used in any application or replaced by other components, as they are not tied in any way to the application logic.
 
 *Application Components* are components created specifically for the application. They differ from a Basic UI Component in the way that it knows the application particularities. Although you might not be aware that you are creating components, any view in your application is a component, its parts can be extracted to smaller application components, and so on.
-
-In Bakery, there are many application components used, and in addition, there are smaller components like `AppNavigation`. It makes possible user navigation to each view by listening on events in a `Tabs` component.
 
 == Architecture Patterns
 
