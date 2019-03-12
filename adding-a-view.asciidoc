@@ -10,7 +10,7 @@ In the following, we're going to create a new view and add it to the navigation,
 
 == Creating a design
 
-The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new design (Vaadin Platform Design) `about-view.html` in `src/main/resources/static/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
+The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new Vaadin Platform Design named `about-view.html` in `src/main/resources/static/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
 
 image::img/new-design.png[Adding a new design file]
 
