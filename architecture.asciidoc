@@ -25,11 +25,11 @@ An H2 in-memory database is used by default for easy setup and getting started. 
 The UI layer is responsible for creating the visual interface, reacting to user events, calling the service layer to fetch and update data, and updating the UI based on changes.
 
 === Everything is a component
-As the UI layer is built using Vaadin 10, it is based on composition. Everything you see on the screen is a component, possibly containing other components.
+As the UI layer is built using Vaadin 10+, it is based on composition. Everything you see on the screen is a component, possibly containing other components.
 
 There are two types of blocks involved when creating the UI: Basic UI Components and Application Components (a.k.a. Templates).
 
-*Basic UI Components* are the components shipped with Vaadin 10, or included in the project as add-ons. These include components such as `Button` where you mainly listen for user events, layout components like `FormLayout`, and user input components such as `TextField`. The basic UI components are general purpose and can be used in any application or replaced by other components, as they are not tied in any way to the application logic.
+*Basic UI Components* are the components shipped with Vaadin 10+, or included in the project as add-ons. These include components such as `Button` where you mainly listen for user events, layout components like `FormLayout`, and user input components such as `TextField`. The basic UI components are general purpose and can be used in any application or replaced by other components, as they are not tied in any way to the application logic.
 
 *Application Components* are components created specifically for the application. They differ from a Basic UI Component in the way that it knows the application particularities. Although you might not be aware that you are creating components, any view in your application is a component, its parts can be extracted to smaller application components, and so on.
 
@@ -51,7 +51,7 @@ In Bakery, when MVP pattern is utilized, the view decides which components to us
 The `Presenter` otherwise, is the one aware of the service layer, while view is not, it deals with what should happen on view when events happen, and it also handles navigation to/from views.
 
 [NOTE]
-To follow the guiding principle, Bakery MVP implementation does not try to accomplish goals like swapping the View class with an implementation not based on Vaadin 10 etc. The presenter class is also aware of Vaadin 10 concepts, but does not care about specific components used in the view.
+To follow the guiding principle, Bakery MVP implementation does not try to accomplish goals like swapping the View class with an implementation not based on Vaadin 10+ etc. The presenter class is also aware of Vaadin 10+ concepts, but does not care about specific components used in the view.
 
 == Communication between Application Components
 Application components are built to be standalone and reusable in multiple places. To avoid coupling them to other application components, they provide an API which can be used to configure them and/or they fire events to indicate that something has happened, they might be of interest to other components.
