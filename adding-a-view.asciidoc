@@ -65,7 +65,7 @@ Any logic or configuration that you want to add into the view goes here.
 == Process navigation
 
 You can control the view navigation logic by implementing `BeforeEnterObserver` or `BeforeLeaveObserver`. More about
-<<dummy/../../flow/routing/tutorial-routing-lifecycle.asciidoc#, PWA application>>.
+<<dummy/../../flow/routing/tutorial-routing-lifecycle.asciidoc#, navigation lifecycle>>.
 
 == Including the view to the application menu
 
