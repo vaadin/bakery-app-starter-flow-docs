@@ -6,7 +6,7 @@ layout: page
 
 = Bakery App Starter for Flow and Spring
 
-Bakery is an App Starter to give you a head start building your business application based on Vaadin 10 with Flow and Spring.
+Bakery is an App Starter to give you a head start building your business application based on Vaadin 10+ with Flow and Spring.
 
 It includes an end-to-end technology stack covering each layer that is needed to build a production grade application. The App Starter is opinionated and reflects Vaadin's view on what is the best way to build business applications.
 
@@ -26,7 +26,7 @@ image::img/architecture-diagram.png[Bakery Architecture diagram,align=center]
 
 === Declarative, mobile-first views
 
-Views are built with Vaadin 10. Each view is built responsively, mobile-first. Vaadin Designer allows to edit existing views and create new ones visually in a fast and productive way.
+Views are built with Vaadin 10+. Each view is built responsively, mobile-first. Vaadin Designer allows to edit existing views and create new ones visually in a fast and productive way.
 
 .Bakery Mobile view
 image::img/bakery-mobile.png[Bakery Mobile view,align=center]
