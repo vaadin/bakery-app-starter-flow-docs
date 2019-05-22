@@ -10,41 +10,54 @@ In the following, we're going to create a new view and add it to the navigation,
 
 == Creating a design
 
-The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new Vaadin Platform Design named `about-view.html` in `src/main/resources/static/frontend/src`. Designer will add the `.html` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
+The views of bakery are built with link:https://vaadin.com/designer[Vaadin Designer]. We start off by creating a new Vaadin Platform Design named `about-view.js` in `src/main/resources/static/frontend/src`. Designer will add the `.js` suffix for us. Check "Create Java companion file", pick "Java source root" as `src/main/java` and set "Java package" as `com.vaadin.starter.bakery.ui`. Vaadin Designer also will create a corresponding `AboutView.java` class.
 
 image::img/new-design.png[Adding a new design file]
 
-Open the generated `about-view.html` template in Designer's source mode and replace the contents with this:
+Open the generated `about-view.js` template in Designer's source mode and replace the contents with this:
 
-```html
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+```js
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 
-<dom-module id="about-view">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: flex;
-        flex-direction: column;
-      }
-      div {
-        margin: auto;
-      }
-    </style>
+/**
+ * `about-view`
+ *
+ * AboutView element.
+ *
+ * @customElement
+ * @polymer
+ */
+class AboutView extends PolymerElement {
 
-    <div>
-      This is a new web application based on the <a href="http://vaadin.com/start">Vaadin Bakery App Starter.</a>
-    </div>
-  </template>
+    static get template() {
+        return html`
+            <style include="shared-styles">
+                 :host {
+                     display: flex;
+                     flex-direction: column;
+                 }
+                 div {
+                     margin: auto;
+                 }
+            </style>
+            <div>
+                This is a new web application based on the <a href="http://vaadin.com/start">Vaadin Bakery App Starter.</a>
+            </div>
+        `;
+    }
 
-  <script>
-      class AboutView extends Polymer.Element {
-          static get is() {
-              return 'about-view';
-          }
-      }
-      customElements.define(AboutView.is, AboutView);
-  </script>
-</dom-module>
+    static get is() {
+        return 'about-view';
+    }
+
+    static get properties() {
+        return {
+            // Declare your properties here.
+        };
+    }
+}
+
+customElements.define(AboutView.is, AboutView);
 ```
 
 This defines the `about-view` as web component that displays a simple text and a link. You can add new components and content to this template.
@@ -69,11 +82,11 @@ You can control the view navigation logic by implementing `BeforeEnterObserver` 
 
 == Including the view to the application menu
 
-The last thing for us is to add the view in our UI. This is achieved by adding the following into the constructor of `MainView`:
+The last thing for us is to add the view in our UI. This is achieved by adding the following into the `getAvailableTabs` method of `MainView`:
 
 ```java
 if (SecurityUtils.isAccessGranted(AboutView.class)) {
-  setMenuItem(menu, new AppLayoutMenuItem(VaadinIcon.QUESTION_CIRCLE_O.create(), "About", "about"));
+  tabs.add(createTab(VaadinIcon.QUESTION_CIRCLE_O, "About", AboutView.class));
 }
 ```
 
