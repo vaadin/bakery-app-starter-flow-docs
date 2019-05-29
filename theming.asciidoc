@@ -77,7 +77,12 @@ document.head.appendChild($_styleContainer.content);
 === bakery-charts-theme.js
 This file defines a custom extension to the default theme for the `<vaadin-chart>` element. Any changes to the charts look-and-feel on the dashboard view would be defined in this file:
 
-```html
+```js
+import '@polymer/polymer/polymer-element.js';
+import '@vaadin/vaadin-charts/vaadin-chart-default-theme.js';
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `
 <dom-module id="bakery-charts-theme" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
@@ -87,7 +92,8 @@ This file defines a custom extension to the default theme for the `<vaadin-chart
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+document.head.appendChild($_documentContainer.content);
 ```
 
 === Adjusting Lumo properties
