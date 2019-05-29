@@ -62,7 +62,17 @@ This file is the “entry point” to the 'global' application styles. It includ
 </dom-module>
 ```
 
-Any change that you want to apply to all components in the app should be either placed directly into the `shared-styles.js` file or imported into it with a `<link rel="import">`.
+Any change that you want to apply to all components in the app should be either placed directly into the `shared-styles.js` file, inside the `innerHTML` along with the other declarations. Alternatively, you can import a javascript file using the `import` directive. The file should have the same format:
+
+```js
+import '@polymer/polymer/lib/elements/custom-style.js';
+const $_styleContainer = document.createElement('template');
+
+$_styleContainer.innerHTML = `
+// Place custom styles here
+`;
+document.head.appendChild($_styleContainer.content);
+```
 
 === bakery-charts-theme.js
 This file defines a custom extension to the default theme for the `<vaadin-chart>` element. Any changes to the charts look-and-feel on the dashboard view would be defined in this file:
