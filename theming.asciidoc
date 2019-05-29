@@ -11,7 +11,7 @@ This chapter covers how to adjust the visual look of your application, including
 It should be noted up-front that the app comes with two parts that need to be styled separately:
 
 . the offline page (`offline-page.html`) which is an independent HTML page with minimal CSS defining the look of the offline screen
-. the actual application which uses the Polymer's approach to styling (style modules, see link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom^] for more details).
+. the actual application which uses the Polymer's approach to styling (style modules, see link:https://www.polymer-project.org/3.0/docs/devguide/style-shadow-dom[https://www.polymer-project.org/3.0/docs/devguide/style-shadow-dom^] for more details).
 
 
 == Styling the offline page
@@ -34,7 +34,7 @@ You can modify the background-image, or remove it entirely:
 
 == Styling the application
 
-The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.4.0/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin components. The app makes a few customizations to the Lumo theme (in the `shared-styles.html` file) and defines styles for all application-specific components and views.
+The Bakery app starter uses the link:https://cdn-origin.vaadin.com/vaadin-lumo-styles/1.4.0/demo/[Vaadin Lumo theme^] as a baseline for its visual styles. The theme sets the global fonts and base colors for the app and provides styles for all Vaadin components. The app makes a few customizations to the Lumo theme (in the `shared-styles.js` file) and defines styles for all application-specific components and views.
 
 Notice that the Lumo theme is set on all root `@RouterLayout` classes (`MainView` and `LoginView`). You can read more about the `@Theme` annotation in the <<../flow/theme/using-component-themes#,Component Themes>> chapter of the Vaadin 10+ docs.
 
@@ -43,9 +43,9 @@ Notice that the Lumo theme is set on all root `@RouterLayout` classes (`MainView
 public class MainView extends PolymerTemplate<TemplateModel>
 ```
 
-Most views and components in the Bakery app starter take advantage of the Vaadin 10+ support for <<../flow/polymer-templates/tutorial-template-basic#,Polymer-based templates>>. That's why the link:https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom[styling approach^] recommended for Polymer-based Web Components applies fully to the Bakery app starter.
+Most views and components in the Bakery app starter take advantage of the Vaadin 10+ support for <<../flow/polymer-templates/tutorial-template-basic#,Polymer-based templates>>. That's why the link:https://www.polymer-project.org/3.0/docs/devguide/style-shadow-dom[styling approach^] recommended for Polymer-based Web Components applies fully to the Bakery app starter.
 
-==== shared-styles.html
+==== shared-styles.js
 This file is the “entry point” to the 'global' application styles. It includes the `shared-styles` Polymer style module that should be included into the local styles of every Polymer template in the app. It also contains customizations for the Lumo theme for a number of Vaadin components (for example, for `<vaadin-text-field>` and `<vaadin-grid>`):
 
 ```html
@@ -62,12 +62,27 @@ This file is the “entry point” to the 'global' application styles. It includ
 </dom-module>
 ```
 
-Any change that you want to apply to all components in the app should be either placed directly into the `shared-styles.html` file or imported into it with a `<link rel="import">`.
+Any change that you want to apply to all components in the app should be either placed directly into the `shared-styles.js` file, inside the `innerHTML` along with the other declarations. Alternatively, you can import a javascript file using the `import` directive. The file should have the same format:
 
-=== bakery-charts-theme.html
+```js
+import '@polymer/polymer/lib/elements/custom-style.js';
+const $_styleContainer = document.createElement('template');
+
+$_styleContainer.innerHTML = `
+// Place custom styles here
+`;
+document.head.appendChild($_styleContainer.content);
+```
+
+=== bakery-charts-theme.js
 This file defines a custom extension to the default theme for the `<vaadin-chart>` element. Any changes to the charts look-and-feel on the dashboard view would be defined in this file:
 
-```html
+```js
+import '@polymer/polymer/polymer-element.js';
+import '@vaadin/vaadin-charts/vaadin-chart-default-theme.js';
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `
 <dom-module id="bakery-charts-theme" theme-for="vaadin-chart">
   <template>
     <style include="vaadin-chart-default-theme">
@@ -77,13 +92,14 @@ This file defines a custom extension to the default theme for the `<vaadin-chart
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+document.head.appendChild($_documentContainer.content);
 ```
 
 === Adjusting Lumo properties
 Various aspects of the Lumo theme (such as base fonts and colors) can be easily adjusted by changing the CSS custom properties.
 
-For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.html` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
+For instance, the font in the Lumo theme is defined by the `--lumo-font-family` custom property. Changing the value of this property for the entire application or for some parts of it would change the font. For example, setting it in the `main-view.js` would affect all pages of the app that use the `MainView` class as a parent layout (that is, all the pages except for the login page).
 
 ```html
 <dom-module id="main-view">
@@ -118,14 +134,7 @@ The app contains the application icons which are used as “homescreen” icons 
 image::img/add-to-home-screen.png[Adding to iOS homescreen]
 
 === Viewport configuration
-Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by adding a `<meta name="viewport">` tag to the application bootstrap page in `CustomBootstrapListener`:
-
-```java
-private void addViewportTag(Element head) {
-  String viewport = "width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes";
-  head.append("<meta name=\"viewport\" content=\"" + viewport + "\">");
-}
-```
+Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by using the `@Viewport(VIEWPORT)` annotation in the `MainView`.
 
 Applications that are built for mobile tend to give a more robust feel if zooming is turned off, but you might want to turn it back on, if your application contains content that the user might want to zoom.
 
@@ -137,7 +146,7 @@ If you want your application to run full-screen - without any browser controls, 
 <meta name="apple-mobile-web-app-capable" content="yes">
 ```
 
-The `CustomBootstrapListener` class would be a good place to add this code.
+That can be done by using the `Meta` annotation in the `MainView`.
 
 === Don’t forget offline-page.html
 Remember that `offline-page.html` is a stand-alone page and has all the icons/viewport tags mentioned above added separately; please remember to update it as well.
