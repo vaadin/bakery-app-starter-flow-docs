@@ -65,7 +65,7 @@ Press the green arrow to launch the app.
 
 More about how to create and edit run/debug configuration in IntelliJ IDEA: https://www.jetbrains.com/help/idea/creating-and-editing-run-debug-configurations.html
 
-To make a production build use the `clean install -Dvaadin.productionMode` maven goal. After a production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed to an application server.
+To make a production build use the `clean install -Pproduction` maven goal. After a production build is done in `application-folder-path/target' you can find the .war file which is ready to be deployed to an application server.
 
 == Debugging
 
