@@ -134,7 +134,7 @@ The app contains the application icons which are used as “homescreen” icons 
 image::img/add-to-home-screen.png[Adding to iOS homescreen]
 
 === Viewport configuration
-Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by using the `@Viewport(VIEWPORT)` annotation in the `MainView`.
+Making the application work well on mobile devices of various sizes requires us to tell the device how we intend it to be shown. We can do this by using the `@Viewport(VIEWPORT)` annotation in the `AppShell`.
 
 Applications that are built for mobile tend to give a more robust feel if zooming is turned off, but you might want to turn it back on, if your application contains content that the user might want to zoom.
 
